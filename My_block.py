@@ -7,6 +7,7 @@ import Robot
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
     """Checks when each color sensor reads a reflected light intensity value under 10.
         When a color sensor reads a value under 10, it stops the coresponding motor. Motor default speed is 10."""
+    #Defines left and right wheel speed as integers
     left_wheel_speed = int(left_wheel_speed)
     right_wheel_speed = int(right_wheel_speed)
 
