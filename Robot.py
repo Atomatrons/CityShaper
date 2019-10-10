@@ -14,7 +14,7 @@ from ev3dev2.motor import SpeedNativeUnits
 from ev3dev2.motor import MediumMotor, OUTPUT_A, OUTPUT_D
 
 # import Sensor modules and the ev3 ports used for it
-from ev3dev2.sensor.lego import ColorSensor
+from shiva_color import shiva_color
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 
 from ev3dev2.sensor.lego import GyroSensor, TouchSensor
@@ -26,8 +26,8 @@ from ev3dev2.button import Button
 # Port assignments
 MEDIUM_MOTOR_LEFT = OUTPUT_A
 MEDIUM_MOTOR_RIGHT = OUTPUT_D
-LARGE_MOTOR_LEFT_PORT = OUTPUT_B
-LARGE_MOTOR_RIGHT_PORT = OUTPUT_C
+LARGE_MOTOR_LEFT_PORT = OUTPUT_C
+LARGE_MOTOR_RIGHT_PORT = OUTPUT_B
 
 
 COLORSENSOR_RIGHT = INPUT_1
@@ -60,8 +60,8 @@ right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
 # BOTTOM COLOR SENSORS ARE USED FOR WHITE LINE DETECTION
 # Create Color sensor objects
 
-color_right = ColorSensor(COLORSENSOR_RIGHT)
-color_left = ColorSensor(COLORSENSOR_LEFT)
+right_color = shiva_color(COLORSENSOR_RIGHT)
+left_color = shiva_color(COLORSENSOR_LEFT)
 
 # Create GYROSENSOR
 gyro = GyroSensor(GYROSENSOR_PORT)

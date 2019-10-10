@@ -1,11 +1,11 @@
 #!/usr/bin/env micropython
 
 import Robot
+import my_block
+from shiva_gyro import ShivaGyro
 
-import My_block
+gyro = ShivaGyro(Robot, INPUT_2)
 
-My_block.line_square(-30, -30)
+gyro.compass_point = 41
 
-Robot.right_attachment.on_for_seconds(100, 5)
-
-Robot.right_attachment.on_for_seconds(-100, 5)
+print(gyro.compass_point)
