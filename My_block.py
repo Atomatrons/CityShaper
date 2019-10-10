@@ -1,9 +1,8 @@
+# My_block.py - Utility programs for use in runs
 from time import sleep
 import Robot
 
 # Defines the line square program
-
-
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
     """Checks when each color sensor reads a reflected light intensity value under 10.
         When a color sensor reads a value under 10, it stops the coresponding motor. Motor default speed is 10."""
