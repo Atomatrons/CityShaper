@@ -1,7 +1,8 @@
 # Robot.py - Logical defenition of the robot with defnition of the ports on the EV3 and the sensors / motors connected to it
-#
+
 # Copyright of Viperbots FLL team  http://sites.google.com/view/viperbotsofficial/
 # Can be freely used by any developors as long as you inform us on ViperbotsWHMS@gmail.com
+
 # Modified by Shiva Atomatrons under the Viperbots licensing terms
 
 from time import sleep
@@ -69,6 +70,8 @@ gyro = GyroSensor(GYROSENSOR_PORT)
 touch = TouchSensor(TOUCHSENSOR_PORT)
 
 # Debug print code
+
+
 def debug_print(*args, **kwargs):
     '''Print debug messages to stderr.
     This shows up in the output panel in VS Code.

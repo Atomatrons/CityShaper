@@ -3,6 +3,8 @@ from time import sleep
 import Robot
 
 # Defines the line square program
+
+
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
     """Checks when each color sensor reads a reflected light intensity value under 10.
         When a color sensor reads a value under 10, it stops the coresponding motor. Motor default speed is 10."""
@@ -62,6 +64,3 @@ def wall_square(speed=10):
             Robot.sleep(0.3)
             Robot.steer_pair.off(brake=True)
             break
-
-
-
