@@ -6,49 +6,49 @@ import Robot
 
 
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
-    """Checks when each color sensor reads a reflected light intensity value under 10.
-        When a color sensor reads a value under 10, it stops the coresponding motor. Motor default speed is 10."""
-    # Defines left and right wheel speed as integers
-    left_wheel_speed = int(left_wheel_speed)
-    right_wheel_speed = int(right_wheel_speed)
+    """
+    Checks when each color sensor reads a reflected light intensity value
+    under 10.  When a color sensor reads a value under 10, it stops the
+    coresponding motor. Motor default speed is 10.
+    """
 
     # Turns on the motors
     Robot.left_wheel.on(left_wheel_speed)
     Robot.right_wheel.on(right_wheel_speed)
 
     # Esablishes varibles that tell the program if a motor is stopped
-    is_left_stopped = False
-    is_right_stopped = False
+    left_is_on = True
+    right_is_on = True
 
     # Checks the color sensor values to find black. When a color sensor finds black, it stops the corresponding motor.
 
-    while True:
-        is_left_stopped = False
-        is_right_stopped = False
+    while left_is_on and right_is_on:
+        
         if Robot.right_color.is_at_white():
             Robot.right_wheel.off(brake=True)
-            is_right_stopped = True
+            right_is_on = False
 
         if Robot.left_color.is_at_white():
             Robot.left_wheel.off(brake=True)
-            is_left_stopped = True
+            left_is_on = False
 
-        if is_left_stopped and is_right_stopped == True:
-            break
-    Robot.left_wheel.on(-10)
-    Robot.right_wheel.on(-10)
-    while True:
+    Robot.sleep(0.1)
+
+    Robot.left_wheel.on(left_wheel_speed/4)
+    Robot.right_wheel.on(right_wheel_speed/4)
+    
+    right_is_on = True
+    left_is_on = True
+    
+    while left_is_on and right_is_on:
 
         if Robot.right_color.is_at_black():
             Robot.right_wheel.off(brake=True)
-            is_right_stopped = True
+            right_is_on = False
 
         if Robot.left_color.is_at_black():
             Robot.left_wheel.off(brake=True)
-            is_left_stopped = True
-
-        if is_left_stopped and is_right_stopped == True:
-            break
+            left_is_on = False
 
 
 # Defines the wall square program

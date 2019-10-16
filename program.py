@@ -1,11 +1,9 @@
 #!/usr/bin/env micropython
-
 import Robot
-import my_block
 from shiva_gyro import ShivaGyro
+from sys import stderr
+from Spin_Turn import spin_turn
 
-gyro = ShivaGyro(Robot, INPUT_2)
+Robot.gyro.compass_point = 90
 
-gyro.compass_point = 41
-
-print(gyro.compass_point)
+spin_turn(180)
