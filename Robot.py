@@ -20,6 +20,7 @@ from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 
 from ev3dev2.sensor.lego import GyroSensor, TouchSensor
 from ev3dev2.sensor import INPUT_3
+from shiva_gyro import ShivaGyro
 
 # Import button function for EV3
 from ev3dev2.button import Button
@@ -65,7 +66,8 @@ right_color = shiva_color(COLORSENSOR_RIGHT)
 left_color = shiva_color(COLORSENSOR_LEFT)
 
 # Create GYROSENSOR
-gyro = GyroSensor(GYROSENSOR_PORT)
+gyro = ShivaGyro(GYROSENSOR_PORT)
+gyro.mode = ShivaGyro.MODE_GYRO_ANG
 
 touch = TouchSensor(TOUCHSENSOR_PORT)
 
