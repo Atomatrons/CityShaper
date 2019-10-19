@@ -55,7 +55,9 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
 
 def wall_square(speed=10):
-    """Program that squares against a wall"""
+    """
+    Program that squares against a wall
+    """
     if speed < 0:
         speed = speed*(-1)
     Robot.steer_pair.on(0, speed)
@@ -68,20 +70,15 @@ def wall_square(speed=10):
 
 # Defines the SpinTurn program
 
-def SpinTurn(target_angle, on=False):
-    # Checks if the target_angle value is greater than 360 or smaller than 0
-    if target_angle > 360 or target_angle < 0:
-        print("ERR TARGET_ANGLE MUST BE BETWEEN 0 AND 360", file=stderr)
-        Robot.sleep(0.5)
-        return
-
+def SpinTurn(target_angle):
+    """
+    Turns the robot untill the gyro reads the target angle compass point
+    """
     # Turns on the motors
-    if not on:
-        if target_angle > Robot.gyro.compass_point:
-            Robot.tank_pair.on(25, -25)
-        else:
-            Robot.tank_pair.on(-25, 25)
-        return SpinTurn(target_angle, on=True)
+    if target_angle > Robot.gyro.compass_point:
+        Robot.tank_pair.on(25, -25)
+    else:
+        Robot.tank_pair.on(-25, 25)
 
     # Checks if the gyro compass point angle equals target_angle
     if target_angle > Robot.gyro.compass_point:
@@ -93,7 +90,6 @@ def SpinTurn(target_angle, on=False):
         if target_angle < Robot.gyro.compass_point:
             while target_angle < Robot.gyro.compass_point:
                 Robot.tank_pair.on(-2, 2)
-        return
     # Checks if the gyro compass point angle equals target_angle
     else:
         while target_angle < Robot.gyro.compass_point:
@@ -104,4 +100,3 @@ def SpinTurn(target_angle, on=False):
         if target_angle > Robot.gyro.compass_point:
             while target_angle > Robot.gyro.compass_point:
                 Robot.tank_pair.on(2, -2)
-        return

@@ -22,8 +22,7 @@ from ev3dev2.sensor.lego import GyroSensor, TouchSensor
 from ev3dev2.sensor import INPUT_3
 from ShivaGyro import ShivaGyro
 
-# Import button function for EV3
-from ev3dev2.button import Button
+
 
 # Port assignments
 MEDIUM_MOTOR_LEFT = OUTPUT_A
@@ -42,7 +41,7 @@ CLK_WISE = 'clock_wise'  # positive speed
 ANTI_CLK_WISE = 'anti_clck_wise'  # negative speed
 
 
-# Create objects for the ev3 buttons, motors and sensors. Only one object will be created for each physical object and used in every program
+# Create objects for the ev3 motors and sensors. Only one object will be created for each physical object and used in every program
 
 # LARGEMOTORS USED FOR WHEELS
 # Create individual wheel objects
@@ -58,8 +57,7 @@ tank_pair = MoveTank(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
 left_attachment = MediumMotor(MEDIUM_MOTOR_LEFT)
 right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
 
-# TOP COLOR SENSOR IS USED FOR ATTACHMENT VERIFICATION
-# BOTTOM COLOR SENSORS ARE USED FOR WHITE LINE DETECTION
+
 # Create Color sensor objects
 
 right_color = ShivaColor(COLORSENSOR_RIGHT)
@@ -69,6 +67,7 @@ left_color = ShivaColor(COLORSENSOR_LEFT)
 gyro = ShivaGyro(GYROSENSOR_PORT)
 gyro.mode = ShivaGyro.MODE_GYRO_ANG
 
+# Create Touch
 touch = TouchSensor(TOUCHSENSOR_PORT)
 
 # Debug print code
