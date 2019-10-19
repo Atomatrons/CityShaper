@@ -1,7 +1,9 @@
 from ev3dev2.sensor.lego import ColorSensor
 
+# Defines the black and white colorsensor RLI values
 
-class shiva_color (ColorSensor):
+
+class ShivaColor (ColorSensor):
     WHITE = 83
     BLACK = 11
 

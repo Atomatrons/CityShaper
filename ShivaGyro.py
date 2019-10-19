@@ -1,5 +1,7 @@
 from ev3dev2.sensor.lego import GyroSensor
 
+# Defines a property that sets the compass points for the robot
+
 
 class ShivaGyro(GyroSensor):
 

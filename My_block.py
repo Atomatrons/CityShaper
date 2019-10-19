@@ -23,7 +23,7 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
     # Checks the color sensor values to find black. When a color sensor finds black, it stops the corresponding motor.
 
     while left_is_on and right_is_on:
-        
+
         if Robot.right_color.is_at_white():
             Robot.right_wheel.off(brake=True)
             right_is_on = False
@@ -36,10 +36,10 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
     Robot.left_wheel.on(left_wheel_speed/4)
     Robot.right_wheel.on(right_wheel_speed/4)
-    
+
     right_is_on = True
     left_is_on = True
-    
+
     while left_is_on and right_is_on:
 
         if Robot.right_color.is_at_black():
@@ -61,6 +61,47 @@ def wall_square(speed=10):
     Robot.steer_pair.on(0, speed)
     while True:
         if Robot.touch.is_pressed == True:
-            Robot.sleep(0.3)
+            Robot.sleep(0.2)
             Robot.steer_pair.off(brake=True)
             break
+
+
+# Defines the SpinTurn program
+
+def SpinTurn(target_angle, on=False):
+    # Checks if the target_angle value is greater than 360 or smaller than 0
+    if target_angle > 360 or target_angle < 0:
+        print("ERR TARGET_ANGLE MUST BE BETWEEN 0 AND 360", file=stderr)
+        Robot.sleep(0.5)
+        return
+
+    # Turns on the motors
+    if not on:
+        if target_angle > Robot.gyro.compass_point:
+            Robot.tank_pair.on(25, -25)
+        else:
+            Robot.tank_pair.on(-25, 25)
+        return SpinTurn(target_angle, on=True)
+
+    # Checks if the gyro compass point angle equals target_angle
+    if target_angle > Robot.gyro.compass_point:
+        while target_angle > Robot.gyro.compass_point:
+            pass
+        Robot.tank_pair.off(brake=True)
+
+        # Precisely turns back to the desired angle if the robot overshot
+        if target_angle < Robot.gyro.compass_point:
+            while target_angle < Robot.gyro.compass_point:
+                Robot.tank_pair.on(-2, 2)
+        return
+    # Checks if the gyro compass point angle equals target_angle
+    else:
+        while target_angle < Robot.gyro.compass_point:
+            pass
+        Robot.tank_pair.off(brake=True)
+
+        # Precisely turns back to the desired angle if the robot overshot
+        if target_angle > Robot.gyro.compass_point:
+            while target_angle > Robot.gyro.compass_point:
+                Robot.tank_pair.on(2, -2)
+        return
