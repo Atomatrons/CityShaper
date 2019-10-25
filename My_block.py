@@ -2,65 +2,129 @@
 from time import sleep
 import Robot
 
+
 # Defines the line square program
-
-
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
-    """Checks when each color sensor reads a reflected light intensity value under 10.
-        When a color sensor reads a value under 10, it stops the coresponding motor. Motor default speed is 10."""
-    # Defines left and right wheel speed as integers
-    left_wheel_speed = int(left_wheel_speed)
-    right_wheel_speed = int(right_wheel_speed)
+    """
+    Checks when each color sensor reads a reflected light intensity value
+    under 10.  When a color sensor reads a value under 10, it stops the
+    coresponding motor. Motor default speed is 10.
+    """
 
     # Turns on the motors
     Robot.left_wheel.on(left_wheel_speed)
     Robot.right_wheel.on(right_wheel_speed)
 
     # Esablishes varibles that tell the program if a motor is stopped
-    is_left_stopped = False
-    is_right_stopped = False
+    left_is_on = True
+    right_is_on = True
 
     # Checks the color sensor values to find black. When a color sensor finds black, it stops the corresponding motor.
 
-    while True:
-        is_left_stopped = False
-        is_right_stopped = False
+    while left_is_on and right_is_on:
+
         if Robot.right_color.is_at_white():
             Robot.right_wheel.off(brake=True)
-            is_right_stopped = True
+            right_is_on = False
 
         if Robot.left_color.is_at_white():
             Robot.left_wheel.off(brake=True)
-            is_left_stopped = True
+            left_is_on = False
 
-        if is_left_stopped and is_right_stopped == True:
-            break
-    Robot.left_wheel.on(-10)
-    Robot.right_wheel.on(-10)
-    while True:
+    Robot.sleep(0.1)
+
+    Robot.left_wheel.on(left_wheel_speed/4)
+    Robot.right_wheel.on(right_wheel_speed/4)
+
+    right_is_on = True
+    left_is_on = True
+
+    while left_is_on and right_is_on:
 
         if Robot.right_color.is_at_black():
             Robot.right_wheel.off(brake=True)
-            is_right_stopped = True
+            right_is_on = False
 
         if Robot.left_color.is_at_black():
             Robot.left_wheel.off(brake=True)
-            is_left_stopped = True
-
-        if is_left_stopped and is_right_stopped == True:
-            break
+            left_is_on = False
 
 
 # Defines the wall square program
-
-
 def wall_square(speed=10):
-    """Program that squares against a wall"""
-    if speed < 0:
+    """
+    Program that squares against a wall
+    """
+    if speed > 0:
         speed = speed*(-1)
     Robot.steer_pair.on(0, speed)
     while True:
         if Robot.touch.is_pressed == True:
-            Robot.sleep(0.3)
+            Robot.sleep(0.2)
             Robot.steer_pair.off(brake=True)
             break
+
+
+# Defines the spin_turn program
+def spin_turn(target_angle):
+    """
+    Turns the robot untill the gyro reads the target angle compass point
+    """
+    # Turns on the motors
+    if target_angle > Robot.gyro.compass_point:
+        Robot.tank_pair.on(25, -25)
+    else:
+        Robot.tank_pair.on(-25, 25)
+
+    # Checks if the gyro compass point angle equals target_angle
+    if target_angle > Robot.gyro.compass_point:
+        while target_angle > Robot.gyro.compass_point:
+            pass
+        Robot.tank_pair.off(brake=True)
+
+        # Precisely turns back to the desired angle if the robot overshot
+        if target_angle < Robot.gyro.compass_point:
+            while target_angle < Robot.gyro.compass_point:
+                Robot.tank_pair.on(-2, 2)
+    # Checks if the gyro compass point angle equals target_angle
+    else:
+        while target_angle < Robot.gyro.compass_point:
+            pass
+        Robot.tank_pair.off(brake=True)
+
+        # Precisely turns back to the desired angle if the robot overshot
+        if target_angle > Robot.gyro.compass_point:
+            while target_angle > Robot.gyro.compass_point:
+                Robot.tank_pair.on(2, -2)
+
+#Defines the gyro_straight program
+def gyro_straight(speed, rotations):
+    """
+    Makes the robot go straight using the gyro.
+    """
+    #Sets the degree value the robot will try to stick to
+    true_north = Robot.gyro.angle
+    
+    # checks if the robot should go backward or not
+    if rotations*speed < 0:
+        if rotations > 0:
+            target_rotations = Robot.left_wheel.rotations - rotations
+        else:
+            target_rotations = Robot.left_wheel.rotations + rotations
+
+        while Robot.left_wheel.rotations > target_rotations:
+            Robot.steer_pair.on(true_north-Robot.gyro.angle, -speed)
+            
+
+
+
+    else:
+        if rotations < 0:
+            target_rotations = Robot.left_wheel.rotations - rotations
+        
+        else:
+            target_rotations = Robot.left_wheel.rotations + rotations
+    
+        while Robot.left_wheel.rotations < target_rotations:
+            Robot.steer_pair.on(true_north-Robot.gyro.angle, speed)   
+    Robot.steer_pair.off(brake = True)
