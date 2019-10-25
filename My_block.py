@@ -2,9 +2,8 @@
 from time import sleep
 import Robot
 
+
 # Defines the line square program
-
-
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
     """
     Checks when each color sensor reads a reflected light intensity value
@@ -52,13 +51,11 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
 
 # Defines the wall square program
-
-
 def wall_square(speed=10):
     """
     Program that squares against a wall
     """
-    if speed < 0:
+    if speed > 0:
         speed = speed*(-1)
     Robot.steer_pair.on(0, speed)
     while True:
@@ -68,9 +65,8 @@ def wall_square(speed=10):
             break
 
 
-# Defines the SpinTurn program
-
-def SpinTurn(target_angle):
+# Defines the spin_turn program
+def spin_turn(target_angle):
     """
     Turns the robot untill the gyro reads the target angle compass point
     """
@@ -100,3 +96,35 @@ def SpinTurn(target_angle):
         if target_angle > Robot.gyro.compass_point:
             while target_angle > Robot.gyro.compass_point:
                 Robot.tank_pair.on(2, -2)
+
+#Defines the gyro_straight program
+def gyro_straight(speed, rotations):
+    """
+    Makes the robot go straight using the gyro.
+    """
+    #Sets the degree value the robot will try to stick to
+    true_north = Robot.gyro.angle
+    
+    # checks if the robot should go backward or not
+    if rotations*speed < 0:
+        if rotations > 0:
+            target_rotations = Robot.left_wheel.rotations - rotations
+        else:
+            target_rotations = Robot.left_wheel.rotations + rotations
+
+        while Robot.left_wheel.rotations > target_rotations:
+            Robot.steer_pair.on(true_north-Robot.gyro.angle, -speed)
+            
+
+
+
+    else:
+        if rotations < 0:
+            target_rotations = Robot.left_wheel.rotations - rotations
+        
+        else:
+            target_rotations = Robot.left_wheel.rotations + rotations
+    
+        while Robot.left_wheel.rotations < target_rotations:
+            Robot.steer_pair.on(true_north-Robot.gyro.angle, speed)   
+    Robot.steer_pair.off(brake = True)

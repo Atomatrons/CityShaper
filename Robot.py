@@ -1,15 +1,15 @@
-# Robot.py - Logical defenition of the robot with defnition of the ports on the EV3 and the sensors / motors connected to it
+# Robot.py - Logical definition of the robot with definition of the ports on the EV3 and the sensors / motors connected to it
 
 # Copyright of Viperbots FLL team  http://sites.google.com/view/viperbotsofficial/
 # Can be freely used by any developors as long as you inform us on ViperbotsWHMS@gmail.com
 
 # Modified by Shiva Atomatrons under the Viperbots licensing terms
-
+from ev3dev2.console import Console
 from time import sleep
 import sys
 
 # import motor modules and the ev3 ports used for it
-from ev3dev2.motor import Motor, OUTPUT_B, OUTPUT_C
+from ev3dev2.motor import LargeMotor, Motor, OUTPUT_B, OUTPUT_C
 from ev3dev2.motor import MoveSteering, MoveTank
 from ev3dev2.motor import SpeedNativeUnits
 from ev3dev2.motor import MediumMotor, OUTPUT_A, OUTPUT_D
@@ -21,7 +21,6 @@ from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 from ev3dev2.sensor.lego import GyroSensor, TouchSensor
 from ev3dev2.sensor import INPUT_3
 from ShivaGyro import ShivaGyro
-
 
 
 # Port assignments
@@ -50,7 +49,10 @@ right_wheel = Motor(LARGE_MOTOR_RIGHT_PORT)
 
 # Create object functions for basic movements for wheel pair blocks
 steer_pair = MoveSteering(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
+steer_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
+
 tank_pair = MoveTank(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
+tank_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 
 # MEDIUM MOTORS USED FOR ATTACHMENT GEARS
 # Create individual motor objects
@@ -70,12 +72,21 @@ gyro.mode = ShivaGyro.MODE_GYRO_ANG
 # Create Touch
 touch = TouchSensor(TOUCHSENSOR_PORT)
 
+# Sets the font size for robot lcd
+console = Console()
+console.set_font('Lat15-VGA16.psf.gz')
+
 # Debug print code
-
-
 def debug_print(*args, **kwargs):
     '''Print debug messages to stderr.
     This shows up in the output panel in VS Code.
     '''
     print(*args, **kwargs, file=sys.stderr)
-    #print ("Hello World")
+
+
+log_file = open('log.txt', 'w+')
+def log(*args, **kwargs):
+    '''Print debug messages to a log file.
+    This shows up in the output panel in VS Code.
+    '''
+    print(*args, **kwargs, file=log_file)
