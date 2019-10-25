@@ -1,4 +1,4 @@
-# Robot.py - Logical defenition of the robot with defnition of the ports on the EV3 and the sensors / motors connected to it
+# Robot.py - Logical definition of the robot with definition of the ports on the EV3 and the sensors / motors connected to it
 
 # Copyright of Viperbots FLL team  http://sites.google.com/view/viperbotsofficial/
 # Can be freely used by any developors as long as you inform us on ViperbotsWHMS@gmail.com
@@ -77,8 +77,6 @@ console = Console()
 console.set_font('Lat15-VGA16.psf.gz')
 
 # Debug print code
-
-
 def debug_print(*args, **kwargs):
     '''Print debug messages to stderr.
     This shows up in the output panel in VS Code.
@@ -87,10 +85,8 @@ def debug_print(*args, **kwargs):
 
 
 log_file = open('log.txt', 'w+')
-
-
 def log(*args, **kwargs):
-    '''Print debug messages to stderr.
+    '''Print debug messages to a log file.
     This shows up in the output panel in VS Code.
     '''
     print(*args, **kwargs, file=log_file)

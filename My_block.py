@@ -4,8 +4,6 @@ import Robot
 
 
 # Defines the line square program
-
-
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
     """
     Checks when each color sensor reads a reflected light intensity value
@@ -53,8 +51,6 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
 
 # Defines the wall square program
-
-
 def wall_square(speed=10):
     """
     Program that squares against a wall
@@ -69,9 +65,8 @@ def wall_square(speed=10):
             break
 
 
-# Defines the SpinTurn program
-
-def SpinTurn(target_angle):
+# Defines the spin_turn program
+def spin_turn(target_angle):
     """
     Turns the robot untill the gyro reads the target angle compass point
     """
