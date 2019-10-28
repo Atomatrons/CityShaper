@@ -22,6 +22,9 @@ from ev3dev2.sensor.lego import GyroSensor, TouchSensor
 from ev3dev2.sensor import INPUT_3
 from ShivaGyro import ShivaGyro
 
+# Creates sound and button objects
+from ev3dev2.sound import Sound
+from ev3dev2.button import Button
 
 # Port assignments
 MEDIUM_MOTOR_LEFT = OUTPUT_A
@@ -71,6 +74,11 @@ gyro.mode = ShivaGyro.MODE_GYRO_ANG
 
 # Create Touch
 touch = TouchSensor(TOUCHSENSOR_PORT)
+
+
+# Creates sound and button objects
+sound = Sound()
+button = Button()
 
 # Sets the font size for robot lcd
 console = Console()
