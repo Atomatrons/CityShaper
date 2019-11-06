@@ -22,6 +22,9 @@ from ev3dev2.sensor.lego import GyroSensor, TouchSensor
 from ev3dev2.sensor import INPUT_3
 from ShivaGyro import ShivaGyro
 
+# Creates sound and button objects
+from ev3dev2.sound import Sound
+from ev3dev2.button import Button
 
 # Port assignments
 MEDIUM_MOTOR_LEFT = OUTPUT_A
@@ -72,11 +75,18 @@ right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
 # Create Touch
 #touch = TouchSensor(TOUCHSENSOR_PORT)
 
+
+# Creates sound and button objects
+sound = Sound()
+button = Button()
+
 # Sets the font size for robot lcd
 console = Console()
 console.set_font('Lat15-VGA16.psf.gz')
 
 # Debug print code
+
+
 def debug_print(*args, **kwargs):
     '''Print debug messages to stderr.
     This shows up in the output panel in VS Code.
@@ -84,7 +94,10 @@ def debug_print(*args, **kwargs):
     print(*args, **kwargs, file=sys.stderr)
 
 
+# outputs log data to VS Code instead of robot screen
 log_file = open('log.txt', 'w+')
+
+
 def log(*args, **kwargs):
     '''Print debug messages to a log file.
     This shows up in the output panel in VS Code.
