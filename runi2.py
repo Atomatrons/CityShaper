@@ -2,7 +2,7 @@
 import Robot
 
 
-def push_tan_block_return():
+def push_block_return():
     """ 
     This is the tan block pushing mission and it scores 60 points. This is Kyan and Rushil's second mission.
     """
