@@ -105,7 +105,7 @@ def gyro_straight(speed, rotations):
     Makes the robot go straight using the gyro.
     """
     # Sets the degree value the robot will try to stick to
-    true_north = Robot.gyro.angle
+    start_heading = Robot.gyro.angle
 
     # checks if the robot should go backward or not
     if rotations*speed < 0:
@@ -115,17 +115,15 @@ def gyro_straight(speed, rotations):
             target_rotations = Robot.left_wheel.rotations + rotations
 
         while Robot.left_wheel.rotations > target_rotations:
-            Robot.steer_pair.on(true_north+Robot.gyro.angle, speed)
-
+            Robot.steer_pair.on(Robot.gyro.angle-start_heading, speed)
     else:
         if rotations < 0:
             target_rotations = Robot.left_wheel.rotations - rotations
-
         else:
             target_rotations = Robot.left_wheel.rotations + rotations
 
         while Robot.left_wheel.rotations < target_rotations:
-            Robot.steer_pair.on(true_north-Robot.gyro.angle, -speed)
+            Robot.steer_pair.on(Robot.gyro.angle-start_heading, speed)
     Robot.steer_pair.off(brake=True)
 
 def ramp_speed(start_speed, end_speed, rotations):
