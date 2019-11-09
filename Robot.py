@@ -65,15 +65,15 @@ right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
 
 # Create Color sensor objects
 
-#right_color = ShivaColor(COLORSENSOR_RIGHT)
-#left_color = ShivaColor(COLORSENSOR_LEFT)
+right_color = ShivaColor(COLORSENSOR_RIGHT)
+left_color = ShivaColor(COLORSENSOR_LEFT)
 
 # Create GYROSENSOR
-#gyro = ShivaGyro(GYROSENSOR_PORT)
-#gyro.mode = ShivaGyro.MODE_GYRO_ANG
+gyro = ShivaGyro(GYROSENSOR_PORT)
+gyro.mode = ShivaGyro.MODE_GYRO_ANG
 
 # Create Touch
-#touch = TouchSensor(TOUCHSENSOR_PORT)
+touch = TouchSensor(TOUCHSENSOR_PORT)
 
 
 # Creates sound and button objects
