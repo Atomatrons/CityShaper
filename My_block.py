@@ -85,7 +85,7 @@ def spin_turn(target_angle):
         # Precisely turns back to the desired angle if the robot overshot
         if target_angle < Robot.gyro.compass_point:
             while target_angle < Robot.gyro.compass_point:
-                Robot.tank_pair.on(-2, 2)
+                Robot.tank_pair.on(2, -2)
     # Checks if the gyro compass point angle equals target_angle
     else:
         while target_angle < Robot.gyro.compass_point:
