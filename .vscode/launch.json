@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations":[
+        {
+            "type": "ev3devBrowser",
+            "request": "launch",
+            "name": "Download and Run",
+            "program": "/home/robot/${workspaceRootFolderName}/${relativeFile}"
+        }
+    ]
+}
