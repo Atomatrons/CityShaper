@@ -97,14 +97,16 @@ def spin_turn(target_angle):
             while target_angle > Robot.gyro.compass_point:
                 Robot.tank_pair.on(2, -2)
 
-#Defines the gyro_straight program
+# Defines the gyro_straight program
+
+
 def gyro_straight(speed, rotations):
     """
     Makes the robot go straight using the gyro.
     """
-    #Sets the degree value the robot will try to stick to
+    # Sets the degree value the robot will try to stick to
     true_north = Robot.gyro.angle
-    
+
     # checks if the robot should go backward or not
     if rotations*speed < 0:
         if rotations > 0:
@@ -114,17 +116,25 @@ def gyro_straight(speed, rotations):
 
         while Robot.left_wheel.rotations > target_rotations:
             Robot.steer_pair.on(true_north-Robot.gyro.angle, -speed)
-            
-
-
 
     else:
         if rotations < 0:
             target_rotations = Robot.left_wheel.rotations - rotations
-        
+
         else:
             target_rotations = Robot.left_wheel.rotations + rotations
-    
+
         while Robot.left_wheel.rotations < target_rotations:
-            Robot.steer_pair.on(true_north-Robot.gyro.angle, speed)   
-    Robot.steer_pair.off(brake = True)
+            Robot.steer_pair.on(true_north-Robot.gyro.angle, speed)
+    Robot.steer_pair.off(brake=True)
+
+def ramp_speed(start_speed, end_speed, rotations):
+    start_rotations = Robot.left_wheel.rotations
+
+    while Robot.left_wheel.rotations <= start_rotations + rotations:
+        while start_speed < end_speed:
+            Robot.tank_pair.on(start_speed,start_speed)
+            start_speed = start_speed+0.2
+        Robot.tank_pair.on(end_speed, end_speed)
+        
+        
