@@ -9,10 +9,9 @@ from time import sleep
 import sys
 
 # import motor modules and the ev3 ports used for it
-from ev3dev2.motor import LargeMotor, Motor, OUTPUT_B, OUTPUT_C
+from ev3dev2.motor import LargeMotor, MediumMotor, Motor, OUTPUT_B, OUTPUT_C, OUTPUT_A, OUTPUT_D
 from ev3dev2.motor import MoveSteering, MoveTank
 from ev3dev2.motor import SpeedNativeUnits
-from ev3dev2.motor import MediumMotor, OUTPUT_A, OUTPUT_D
 
 # import Sensor modules and the ev3 ports used for it
 from ShivaColor import ShivaColor
