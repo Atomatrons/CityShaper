@@ -3,8 +3,8 @@ import Robot
 
 import My_block
 
-Robot.tank_pair.on_for_rotations(50, 50, 2.9)
-Robot.left_attachment.on_for_rotations(35, 0.25)
-Robot.tank_pair.on_for_rotations(50, 50, -2.75)
-Robot.tank_pair.on_for_rotations(50, 0, 0.025)
-Robot.tank_pair.on_for_rotations(50, 50, -2.9)
+Robot.gyro.compass_point = 80
+My_block.gyro_straight(75, 7.5)
+Robot.left_attachment.on_for_rotations(100, 1)
+My_block.spin_turn(93)
+Robot.tank_pair.on_for_rotations(-100, -100, 11)
