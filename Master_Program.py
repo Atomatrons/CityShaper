@@ -8,23 +8,31 @@ from runi import push_tan_blocks_and_return
 # Checks if certain buttons are being pressed
 while True:
     if Robot.button.up == True:
-        for int in range(0, 1000):
+        Robot.sound.tone([(500, 350, 50)])
+        for int in range(0, 1400):
             if Robot.button.enter == True:
-                Robot.sound.speak("Run 1 would be running")
+                Robot.sleep(0.2)
+                print("RUN 1")
 
     if Robot.button.down == True:
-        for int in range(0, 1000):
+        Robot.sound.tone([(500, 350, 50), (500, 350, 50)])
+        for int in range(0, 1400):
             if Robot.button.enter == True:
-                Robot.sound.speak("Run 2 would be running")
+                Robot.sleep(0.2)
+                print("RUN 2")
 
     if Robot.button.left == True:
-        for int in range(0, 1000):
+        Robot.sound.tone([(500, 350, 50), (500, 350, 50), (500, 350, 50)])
+        for int in range(0, 1400):
             if Robot.button.enter == True:
-                Robot.sound.speak("Run 3")
+                Robot.sleep(0.2)
+                print("RUN 3")
                 push_tan_blocks_and_return()
 
     if Robot.button.right == True:
-        for int in range(0, 1000):
+        Robot.sound.tone([(500, 350, 50), (500, 350, 50), (500, 350, 50), (500, 350, 50)])
+        for int in range(0, 1400):
             if Robot.button.enter == True:
-                Robot.sound.speak("Run 4")
-                red_push_block_return()
+                Robot.sleep(0.2)
+                print("RUN 4")
+                push_block_return()
