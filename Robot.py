@@ -32,7 +32,6 @@ MEDIUM_MOTOR_RIGHT = OUTPUT_D
 LARGE_MOTOR_LEFT_PORT = OUTPUT_C
 LARGE_MOTOR_RIGHT_PORT = OUTPUT_B
 
-
 COLORSENSOR_RIGHT = INPUT_1
 COLORSENSOR_LEFT = INPUT_3
 TOUCHSENSOR_PORT = INPUT_4
@@ -85,7 +84,6 @@ console = Console()
 console.set_font('Lat15-VGA16.psf.gz')
 
 # Debug print code
-
 
 def debug_print(*args, **kwargs):
     '''Print debug messages to stderr.
