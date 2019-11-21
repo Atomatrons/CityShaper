@@ -5,4 +5,5 @@ from sys import stderr
 
 
 
-My_block.gyro_straight(55, 9)
+My_block.gyro_straight(55, 5)
+My_block.gyro_straight(55, -5)

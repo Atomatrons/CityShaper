@@ -117,7 +117,7 @@ def gyro_straight(speed, rotations):
             target_rotations = Robot.left_wheel.rotations + rotations
 
         while Robot.left_wheel.rotations > target_rotations:
-            Robot.steer_pair.on(Robot.gyro.angle-start_heading, speed)
+            Robot.steer_pair.on(start_heading - Robot.gyro.angle, -abs(speed))
     else:
         if rotations < 0:
             target_rotations = Robot.left_wheel.rotations - rotations
@@ -136,5 +136,3 @@ def ramp_speed(start_speed, end_speed, rotations):
             Robot.tank_pair.on(start_speed,start_speed)
             start_speed = start_speed+0.2
         Robot.tank_pair.on(end_speed, end_speed)
-        
-        
