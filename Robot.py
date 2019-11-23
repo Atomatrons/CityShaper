@@ -4,15 +4,17 @@
 # Can be freely used by any developors as long as you inform us on ViperbotsWHMS@gmail.com
 
 # Modified by Shiva Atomatrons under the Viperbots licensing terms
+
+# import misc commands used in the port checker and font setting
 from ev3dev2.console import Console
 from time import sleep
 import sys
+from ev3dev2 import DeviceNotFound
 
 # import motor modules and the ev3 ports used for it
 from ev3dev2.motor import LargeMotor, MediumMotor, Motor, OUTPUT_B, OUTPUT_C, OUTPUT_A, OUTPUT_D
 from ev3dev2.motor import MoveSteering, MoveTank
 from ev3dev2.motor import SpeedNativeUnits
-from ev3dev2 import DeviceNotFound
 
 # import Sensor modules and the ev3 ports used for it
 from ShivaColor import ShivaColor
@@ -33,15 +35,15 @@ console.set_font('Lat15-VGA16.psf.gz')
 # Port assignments
 MEDIUM_MOTOR_LEFT = OUTPUT_A
 MEDIUM_MOTOR_RIGHT = OUTPUT_D
-LARGE_MOTOR_LEFT_PORT = OUTPUT_C
-LARGE_MOTOR_RIGHT_PORT = OUTPUT_B
+LARGE_MOTOR_LEFT_PORT = OUTPUT_B
+LARGE_MOTOR_RIGHT_PORT = OUTPUT_C
 
 COLORSENSOR_RIGHT = INPUT_1
 COLORSENSOR_LEFT = INPUT_3
 TOUCHSENSOR_PORT = INPUT_4
 GYROSENSOR_PORT = INPUT_2
 
-#Checks every port on the robot to see if its connected properly
+# Checks every port on the robot to see if its connected properly
 healthy = False
 while healthy == False:
     healthy = True
@@ -77,7 +79,7 @@ while healthy == False:
     except:
         print("BAD RIGHT COLOR")
         healthy = False
-    
+
     try:
         touch = TouchSensor(TOUCHSENSOR_PORT)
     except:
@@ -88,10 +90,10 @@ while healthy == False:
     except:
         print("BAD GYRO")
         healthy = False
-    sleep(1.2)
+    sleep(0.5)
     console.reset_console()
 
-#Plays a tone to show the robot passed the test
+# Plays a tone to show the robot passed the test
 print("PASSED WITH NO ERRORS. GOOD LUCK")
 sleep(1.2)
 console.reset_console()

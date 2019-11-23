@@ -13,6 +13,9 @@ Robot.sound.tone([(900, 500, 100)], play_type=1)
 
 # Checks if certain buttons are being pressed
 while True:
+    Robot.console.reset_console
+    print("READY READY READY READY READY READY READY READY")
+    
     if Robot.button.up == True:
         print("RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1")
         Robot.sound.tone([(500, 350, 50)], play_type=1)
