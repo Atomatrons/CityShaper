@@ -59,8 +59,8 @@ tank_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 
 # MEDIUM MOTORS USED FOR ATTACHMENT GEARS
 # Create individual motor objects
-# left_attachment = MediumMotor(MEDIUM_MOTOR_LEFT)
-# right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
+left_attachment = MediumMotor(MEDIUM_MOTOR_LEFT)
+right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
 
 
 # Create Color sensor objects
