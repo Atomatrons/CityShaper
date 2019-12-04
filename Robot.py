@@ -4,15 +4,17 @@
 # Can be freely used by any developors as long as you inform us on ViperbotsWHMS@gmail.com
 
 # Modified by Shiva Atomatrons under the Viperbots licensing terms
+
+# import misc commands used in the port checker and font setting
 from ev3dev2.console import Console
 from time import sleep
 import sys
+from ev3dev2 import DeviceNotFound
 
 # import motor modules and the ev3 ports used for it
-from ev3dev2.motor import LargeMotor, Motor, OUTPUT_B, OUTPUT_C
+from ev3dev2.motor import LargeMotor, MediumMotor, Motor, OUTPUT_B, OUTPUT_C, OUTPUT_A, OUTPUT_D
 from ev3dev2.motor import MoveSteering, MoveTank
 from ev3dev2.motor import SpeedNativeUnits
-from ev3dev2.motor import MediumMotor, OUTPUT_A, OUTPUT_D
 
 # import Sensor modules and the ev3 ports used for it
 from ShivaColor import ShivaColor
@@ -26,17 +28,75 @@ from ShivaGyro import ShivaGyro
 from ev3dev2.sound import Sound
 from ev3dev2.button import Button
 
+# Sets the font size for robot lcd
+console = Console()
+console.set_font('Lat15-VGA16.psf.gz')
+
 # Port assignments
 MEDIUM_MOTOR_LEFT = OUTPUT_A
 MEDIUM_MOTOR_RIGHT = OUTPUT_D
-LARGE_MOTOR_LEFT_PORT = OUTPUT_C
-LARGE_MOTOR_RIGHT_PORT = OUTPUT_B
-
+LARGE_MOTOR_LEFT_PORT = OUTPUT_B
+LARGE_MOTOR_RIGHT_PORT = OUTPUT_C
 
 COLORSENSOR_RIGHT = INPUT_1
 COLORSENSOR_LEFT = INPUT_3
 TOUCHSENSOR_PORT = INPUT_4
 GYROSENSOR_PORT = INPUT_2
+
+# Checks every port on the robot to see if its connected properly
+healthy = False
+while healthy == False:
+    healthy = True
+    try:
+        left_wheel = Motor(LARGE_MOTOR_LEFT_PORT)
+    except:
+        print("BAD LEFT WHEEL")
+        healthy = False
+    try:
+        right_wheel = Motor(LARGE_MOTOR_RIGHT_PORT)
+    except:
+        print("BAD RIGHT WHEEL")
+        healthy = False
+
+    try:
+        left_attachment = Motor(MEDIUM_MOTOR_LEFT)
+    except:
+        print("BAD LEFT ATTACHMENT")
+        healthy = False
+    try:
+        right_attachment = Motor(MEDIUM_MOTOR_RIGHT)
+    except:
+        print("BAD RIGHT ATTACHMENT")
+        healthy = False
+
+    try:
+        left_color = ShivaColor(COLORSENSOR_LEFT)
+    except:
+        print("BAD LEFT COLOR")
+        healthy = False
+    try:
+        right_color = ShivaColor(COLORSENSOR_RIGHT)
+    except:
+        print("BAD RIGHT COLOR")
+        healthy = False
+
+    try:
+        touch = TouchSensor(TOUCHSENSOR_PORT)
+    except:
+        print("BAD TOUCH")
+        healthy = False
+    try:
+        gyro = ShivaGyro(GYROSENSOR_PORT)
+    except:
+        print("BAD GYRO")
+        healthy = False
+    sleep(0.5)
+    console.reset_console()
+
+# Plays a tone to show the robot passed the test
+print("PASSED WITH NO ERRORS. GOOD LUCK")
+sleep(1.2)
+console.reset_console()
 
 # Attachment motor direction
 CLK_WISE = 'clock_wise'  # positive speed
@@ -47,6 +107,7 @@ ANTI_CLK_WISE = 'anti_clck_wise'  # negative speed
 
 # LARGEMOTORS USED FOR WHEELS
 # Create individual wheel objects
+
 left_wheel = Motor(LARGE_MOTOR_LEFT_PORT)
 right_wheel = Motor(LARGE_MOTOR_RIGHT_PORT)
 
@@ -80,12 +141,8 @@ touch = TouchSensor(TOUCHSENSOR_PORT)
 sound = Sound()
 button = Button()
 
-# Sets the font size for robot lcd
-console = Console()
-console.set_font('Lat15-VGA16.psf.gz')
 
 # Debug print code
-
 
 def debug_print(*args, **kwargs):
     '''Print debug messages to stderr.
