@@ -4,8 +4,9 @@
 
 import My_block
 import Robot
-from runi2 import push_block_return
 from runi import push_tan_blocks_and_return
+from runi2 import push_block_return
+from swingset import swingset_mission
 
 #Tells the runners that the program is ready to run
 print("READY READY READY READY READY READY READY READY")
@@ -23,6 +24,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1")
                 Robot.sleep(0.2)
+                swingset_mission()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)   
