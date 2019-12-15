@@ -2,6 +2,7 @@
 
 # Master_Program: activates our programs based on different button combinations
 
+from drone import drone
 import My_block
 import Robot
 from crane_and_blocks import crane_and_blocks
@@ -39,6 +40,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2")
                 Robot.sleep(0.2)
+                drone()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
