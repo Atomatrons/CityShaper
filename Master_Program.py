@@ -4,6 +4,7 @@
 
 import My_block
 import Robot
+from crane_and_blocks import crane_and_blocks
 from runi2 import push_block_return
 from runi import push_tan_blocks_and_return
 
@@ -13,6 +14,9 @@ Robot.sound.tone([(900, 500, 100)], play_type=1)
 
 # Checks if certain buttons are being pressed
 while True:
+    Robot.left_wheel.off(brake=False)
+    Robot.right_wheel.off(brake=False)
+    
     Robot.console.reset_console
     print("READY READY READY READY READY READY READY READY")
     
@@ -23,6 +27,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1")
                 Robot.sleep(0.2)
+                crane_and_blocks()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)   
