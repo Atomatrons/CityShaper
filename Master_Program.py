@@ -4,6 +4,10 @@ import My_block
 import Robot
 from runi2 import push_block_return
 from runi import push_tan_blocks_and_return
+from Anti_Drift_Thing import Anti_Drift_Thing
+
+# Runs the gyro drift check program
+Anti_Drift_Thing()
 
 # Checks if certain buttons are being pressed
 while True:
