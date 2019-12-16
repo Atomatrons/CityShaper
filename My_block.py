@@ -96,6 +96,9 @@ def spin_turn(target_angle):
             while target_angle > Robot.gyro.compass_point:
                 Robot.tank_pair.on(2, -2)
 
+    # Log difference between actual and intended compass point, for data analysis
+    Robot.log(abs(target_angle-Robot.gyro.compass_point))
+
 # Defines the gyro_straight program
 
 
