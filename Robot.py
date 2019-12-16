@@ -152,7 +152,7 @@ def debug_print(*args, **kwargs):
 
 
 # outputs log data to VS Code instead of robot screen
-log_file = open('log.txt', 'w+')
+log_file = open('log_data.txt', 'a+')
 
 
 def log(*args, **kwargs):
