@@ -5,7 +5,7 @@ import Robot
 This is mission 11 and 12 and it scores 60 points. This is Kyan and Rushil's mission.
 """
 
-def push_tan_blocks_and_return():
+def push_red_blocks_and_return():
     """
     Pushes blocks to the black circle then returns to base.
     """

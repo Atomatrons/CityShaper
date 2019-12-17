@@ -2,12 +2,13 @@
 
 # Master_Program: activates our programs based on different button combinations
 
-from drone import drone
 import My_block
 import Robot
+
+from drone import drone
+from elevator import elevator
 from crane_and_blocks import crane_and_blocks
-from runi2 import push_block_return
-from runi import push_tan_blocks_and_return
+from runi import push_red_blocks_and_return
 
 #Tells the runners that the program is ready to run
 print("READY READY READY READY READY READY READY READY")
@@ -40,7 +41,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2")
                 Robot.sleep(0.2)
-                drone()
+                elevator()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
@@ -52,7 +53,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3")
                 Robot.sleep(0.2)
-                push_tan_blocks_and_return()
+                push_red_blocks_and_return()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
@@ -64,7 +65,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4")
                 Robot.sleep(0.2)
-                push_block_return()
+                drone()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
