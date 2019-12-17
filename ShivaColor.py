@@ -8,8 +8,8 @@ class ShivaColor (ColorSensor):
     Returns true or false statements depending on wether the color sensor is seeing white or black
     """
     # Defines the black and white colorsensor RLI values
-    WHITE = 83
-    BLACK = 11
+    WHITE = 85
+    BLACK = 8
 
     # Defines a function that returns true or false if the color sensor sees black or not
 

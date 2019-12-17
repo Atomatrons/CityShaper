@@ -44,6 +44,13 @@ TOUCHSENSOR_PORT = INPUT_4
 GYROSENSOR_PORT = INPUT_2
 
 # Checks every port on the robot to see if its connected properly
+
+print("ROBOT STARTING UP")
+for int in range (0,4):
+    print(".")
+    sleep(0.4)
+console.reset_console
+
 healthy = False
 while healthy == False:
     healthy = True

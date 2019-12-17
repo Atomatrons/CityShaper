@@ -2,10 +2,12 @@
 
 # Master_Program: activates our programs based on different button combinations
 
+from drone import drone
 import My_block
 import Robot
-from runi import push_tan_blocks_and_return
+from crane_and_blocks import crane_and_blocks
 from runi2 import push_block_return
+from runi import push_tan_blocks_and_return
 from swingset import swingset_mission
 from Anti_Drift_Thing import Anti_Drift_Thing
 
@@ -18,6 +20,9 @@ Anti_Drift_Thing()
 
 # Checks if certain buttons are being pressed
 while True:
+    Robot.left_wheel.off(brake=False)
+    Robot.right_wheel.off(brake=False)
+    
     Robot.console.reset_console
     print("READY READY READY READY READY READY READY READY")
     
@@ -28,7 +33,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1")
                 Robot.sleep(0.2)
-                swingset_mission()
+                crane_and_blocks()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)   
@@ -40,6 +45,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2")
                 Robot.sleep(0.2)
+                swingset_mission()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
@@ -63,7 +69,8 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4")
                 Robot.sleep(0.2)
-                push_block_return()
+                #push_block_return()
+                drone()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
