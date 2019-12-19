@@ -20,25 +20,7 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
     # Checks the color sensor values to find black. When a color sensor finds black, it stops the corresponding motor.
 
-    while left_is_on and right_is_on:
-
-        if Robot.right_color.is_at_white():
-            Robot.right_wheel.off(brake=True)
-            right_is_on = False
-
-        if Robot.left_color.is_at_white():
-            Robot.left_wheel.off(brake=True)
-            left_is_on = False
-
-    Robot.sleep(0.1)
-
-    Robot.left_wheel.on(left_wheel_speed/4)
-    Robot.right_wheel.on(right_wheel_speed/4)
-
-    right_is_on = True
-    left_is_on = True
-
-    while left_is_on and right_is_on:
+    while left_is_on or right_is_on == True:
 
         if Robot.right_color.is_at_black():
             Robot.right_wheel.off(brake=True)

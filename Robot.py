@@ -6,6 +6,7 @@
 # Modified by Shiva Atomatrons under the Viperbots licensing terms
 
 # import misc commands used in the port checker and font setting
+from Anti_Drift_Thing import Anti_Drift_Thing
 from ev3dev2.console import Console
 from time import sleep
 import sys
@@ -44,12 +45,6 @@ TOUCHSENSOR_PORT = INPUT_4
 GYROSENSOR_PORT = INPUT_2
 
 # Checks every port on the robot to see if its connected properly
-
-print("ROBOT STARTING UP")
-for int in range (0,4):
-    print(".")
-    sleep(0.4)
-console.reset_console
 
 healthy = False
 while healthy == False:
@@ -100,6 +95,10 @@ while healthy == False:
     sleep(0.5)
     console.reset_console()
 
+    Anti_Drift_Thing()
+
+console.reset_console()
+
 # Plays a tone to show the robot passed the test
 print("PASSED WITH NO ERRORS. GOOD LUCK")
 sleep(1.2)
@@ -133,8 +132,8 @@ right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
 
 # Create Color sensor objects
 
-right_color = ShivaColor(COLORSENSOR_RIGHT)
-left_color = ShivaColor(COLORSENSOR_LEFT)
+left_color = ShivaColor(COLORSENSOR_RIGHT)
+right_color = ShivaColor(COLORSENSOR_LEFT)
 
 # Create GYROSENSOR
 gyro = ShivaGyro(GYROSENSOR_PORT)

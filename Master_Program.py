@@ -18,7 +18,9 @@ Robot.sound.tone([(900, 500, 100)], play_type=1)
 while True:
     Robot.left_wheel.off(brake=False)
     Robot.right_wheel.off(brake=False)
-    
+    Robot.left_attachment.off(brake=False)
+    Robot.right_attachment.off(brake=False)
+
     Robot.console.reset_console
     print("READY READY READY READY READY READY READY READY")
     

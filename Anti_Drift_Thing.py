@@ -6,7 +6,7 @@ def Anti_Drift_Thing():
     """
     Checks is gyro is drifting, if it is, do a manual reset
     """
-    print("Gyro is check")
+    print("Checking Gyro...")
 
     old_angle = Robot.gyro.angle
     Robot.sleep(5)
@@ -17,10 +17,11 @@ def Anti_Drift_Thing():
         Robot.sleep(2)
         new_angle = Robot.gyro.angle
         if old_angle == new_angle:
-            print("Angle be good")
+            print("Gyro is not drifting")
             Robot.sleep(1)
+            break
         else:
-         print("Not good angle be")
+         print("Gyro is drifting")
         Robot.sleep(3)
-    print("Angle be good")
+    print("Gyro is not drifting")
     Robot.sleep(1)
