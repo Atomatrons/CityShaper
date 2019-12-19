@@ -113,10 +113,6 @@ ANTI_CLK_WISE = 'anti_clck_wise'  # negative speed
 # Create objects for the ev3 motors and sensors. Only one object will be created for each physical object and used in every program
 
 # LARGEMOTORS USED FOR WHEELS
-# Create individual wheel objects
-
-left_wheel = Motor(LARGE_MOTOR_LEFT_PORT)
-right_wheel = Motor(LARGE_MOTOR_RIGHT_PORT)
 
 # Create object functions for basic movements for wheel pair blocks
 steer_pair = MoveSteering(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
@@ -125,24 +121,8 @@ steer_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 tank_pair = MoveTank(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
 tank_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 
-# MEDIUM MOTORS USED FOR ATTACHMENT GEARS
-# Create individual motor objects
-left_attachment = MediumMotor(MEDIUM_MOTOR_LEFT)
-right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
-
-
-# Create Color sensor objects
-
-right_color = ShivaColor(COLORSENSOR_RIGHT)
-left_color = ShivaColor(COLORSENSOR_LEFT)
-
 # Create GYROSENSOR
-gyro = ShivaGyro(GYROSENSOR_PORT)
 gyro.mode = ShivaGyro.MODE_GYRO_ANG
-
-# Create Touch
-touch = TouchSensor(TOUCHSENSOR_PORT)
-
 
 # Creates sound and button objects
 sound = Sound()

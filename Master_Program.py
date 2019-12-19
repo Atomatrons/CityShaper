@@ -2,14 +2,13 @@
 
 # Master_Program: activates our programs based on different button combinations
 
-from drone import drone
-import My_block
 import Robot
-from crane_and_blocks import crane_and_blocks
-from runi2 import push_block_return
-from runi import push_tan_blocks_and_return
-from swingset import swingset_mission
 from Anti_Drift_Thing import Anti_Drift_Thing
+import My_block
+from crane_and_blocks import crane_and_blocks
+from runi import push_red_blocks_and_return
+from swingset import swingset_mission
+from drone import drone
 
 #Tells the runners that the program is ready to run
 print("READY READY READY READY READY READY READY READY")
@@ -22,9 +21,6 @@ Anti_Drift_Thing()
 while True:
     Robot.left_wheel.off(brake=False)
     Robot.right_wheel.off(brake=False)
-    
-    Robot.console.reset_console
-    print("READY READY READY READY READY READY READY READY")
     
     if Robot.button.up == True:
         print("RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1")
@@ -57,7 +53,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3")
                 Robot.sleep(0.2)
-                push_tan_blocks_and_return()
+                push_red_blocks_and_return()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
@@ -69,7 +65,6 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4")
                 Robot.sleep(0.2)
-                #push_block_return()
                 drone()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
