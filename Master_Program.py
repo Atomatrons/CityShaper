@@ -21,6 +21,11 @@ Anti_Drift_Thing()
 while True:
     Robot.left_wheel.off(brake=False)
     Robot.right_wheel.off(brake=False)
+    Robot.left_attachment.off(brake=False)
+    Robot.right_attachment.off(brake=False)
+
+    Robot.console.reset_console
+    print("READY READY READY READY READY READY READY READY")
     
     if Robot.button.up == True:
         print("RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1 RUN 1")
