@@ -2,9 +2,9 @@
 import Robot
 import My_block
 
-def push_block_return():
+def push_tan_block_return():
     """ 
-    This is the red block pushing mission and it scores 95 points. This is Kyan and Rushil's second mission.
+    This is the tan block pushing mission and it scores 60 points. This is Kyan and Rushil's second mission.
     """
     Robot.gyro.compass_point = 0
     

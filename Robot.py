@@ -6,7 +6,6 @@
 # Modified by Shiva Atomatrons under the Viperbots licensing terms
 
 # import misc commands used in the port checker and font setting
-from Anti_Drift_Thing import Anti_Drift_Thing
 from ev3dev2.console import Console
 from time import sleep
 import sys
@@ -45,6 +44,12 @@ TOUCHSENSOR_PORT = INPUT_4
 GYROSENSOR_PORT = INPUT_2
 
 # Checks every port on the robot to see if its connected properly
+
+print("ROBOT STARTING UP")
+for int in range (0,4):
+    print(".")
+    sleep(0.4)
+console.reset_console
 
 healthy = False
 while healthy == False:
@@ -95,10 +100,6 @@ while healthy == False:
     sleep(0.5)
     console.reset_console()
 
-    Anti_Drift_Thing()
-
-console.reset_console()
-
 # Plays a tone to show the robot passed the test
 print("PASSED WITH NO ERRORS. GOOD LUCK")
 sleep(1.2)
@@ -112,10 +113,6 @@ ANTI_CLK_WISE = 'anti_clck_wise'  # negative speed
 # Create objects for the ev3 motors and sensors. Only one object will be created for each physical object and used in every program
 
 # LARGEMOTORS USED FOR WHEELS
-# Create individual wheel objects
-
-left_wheel = Motor(LARGE_MOTOR_LEFT_PORT)
-right_wheel = Motor(LARGE_MOTOR_RIGHT_PORT)
 
 # Create object functions for basic movements for wheel pair blocks
 steer_pair = MoveSteering(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
@@ -124,24 +121,8 @@ steer_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 tank_pair = MoveTank(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
 tank_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 
-# MEDIUM MOTORS USED FOR ATTACHMENT GEARS
-# Create individual motor objects
-left_attachment = MediumMotor(MEDIUM_MOTOR_LEFT)
-right_attachment = MediumMotor(MEDIUM_MOTOR_RIGHT)
-
-
-# Create Color sensor objects
-
-left_color = ShivaColor(COLORSENSOR_RIGHT)
-right_color = ShivaColor(COLORSENSOR_LEFT)
-
 # Create GYROSENSOR
-gyro = ShivaGyro(GYROSENSOR_PORT)
 gyro.mode = ShivaGyro.MODE_GYRO_ANG
-
-# Create Touch
-touch = TouchSensor(TOUCHSENSOR_PORT)
-
 
 # Creates sound and button objects
 sound = Sound()
@@ -158,7 +139,7 @@ def debug_print(*args, **kwargs):
 
 
 # outputs log data to VS Code instead of robot screen
-log_file = open('log.txt', 'w+')
+log_file = open('log_data.txt', 'a+')
 
 
 def log(*args, **kwargs):

@@ -2,17 +2,21 @@
 
 # Master_Program: activates our programs based on different button combinations
 
-import My_block
 import Robot
-
-from drone import drone
-from elevator import elevator
+from Anti_Drift_Thing import Anti_Drift_Thing
+import My_block
 from crane_and_blocks import crane_and_blocks
 from runi import push_red_blocks_and_return
+from swingset import swingset_mission
+from drone import drone
+
+# Runs the gyro drift check program
+Anti_Drift_Thing()
 
 #Tells the runners that the program is ready to run
 print("READY READY READY READY READY READY READY READY")
 Robot.sound.tone([(900, 500, 100)], play_type=1)
+
 
 # Checks if certain buttons are being pressed
 while True:
@@ -43,7 +47,7 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2")
                 Robot.sleep(0.2)
-                elevator()
+                swingset_mission()
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)

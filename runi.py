@@ -2,12 +2,12 @@
 import My_block
 import Robot
 """
-This is mission 11 and 12 and it scores 60 points. This is Kyan and Rushil's mission.
+This is mission 11 and 12 and it scores 95 points. This is Kyan and Rushil's mission.
 """
 
 def push_red_blocks_and_return():
     """
-    Pushes blocks to the black circle then returns to base.
+    Pushes red blocks to the red circle then returns to base.
     """
     Robot.gyro.compass_point = 75
     Robot.tank_pair.on_for_rotations(50, 50, 3.9)
