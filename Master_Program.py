@@ -10,12 +10,13 @@ from runi import push_red_blocks_and_return
 from swingset import swingset_mission
 from drone import drone
 
+# Runs the gyro drift check program
+Anti_Drift_Thing()
+
 #Tells the runners that the program is ready to run
 print("READY READY READY READY READY READY READY READY")
 Robot.sound.tone([(900, 500, 100)], play_type=1)
 
-# Runs the gyro drift check program
-Anti_Drift_Thing()
 
 # Checks if certain buttons are being pressed
 while True:
