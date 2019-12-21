@@ -22,6 +22,21 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
     while left_is_on or right_is_on == True:
 
+            if Robot.right_color.is_at_white():
+                Robot.right_wheel.off(brake=True)
+                right_is_on = False
+
+            if Robot.left_color.is_at_white():
+                Robot.left_wheel.off(brake=True)
+                left_is_on = False
+
+    Robot.tank_pair.on(5, 5)
+
+    left_is_on = True
+    right_is_on = True
+
+    while left_is_on or right_is_on == True:
+
         if Robot.right_color.is_at_black():
             Robot.right_wheel.off(brake=True)
             right_is_on = False

@@ -9,7 +9,7 @@ class ShivaColor (ColorSensor):
     """
     # Defines the black and white colorsensor RLI values
     WHITE = 84
-    BLACK = 10
+    BLACK = 11
 
     # Defines a function that returns true or false if the color sensor sees black or not
 
