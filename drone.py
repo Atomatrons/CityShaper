@@ -17,15 +17,11 @@ def drone():
 
     # Moves the robot forward and turns it to allign with the line
 
-    My_block.gyro_straight(35, 2.36)
+    My_block.gyro_straight(35, 2.48)
 
     My_block.spin_turn(44)
 
-    My_block.gyro_straight(35, 2.1)
-
-    # Squares to the line
-
-    My_block.line_square(20, 20)
+    My_block.gyro_straight(35, 2.2)
 
     # Picks up the drone
 
@@ -35,9 +31,9 @@ def drone():
 
     # Drops off the drone on the post
 
-    My_block.gyro_straight(10, 0.37)
+    My_block.gyro_straight(10, 0.38)
 
-    My_block.spin_turn(30)
+    My_block.spin_turn(33)
 
     Robot.right_attachment.on_for_rotations(100, 2.3)
 

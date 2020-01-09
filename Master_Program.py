@@ -6,10 +6,10 @@ import Robot
 import My_block
 from Anti_Drift_Thing import Anti_Drift_Thing
 
-from crane_and_blocks import crane_and_blocks
+from Crane_and_blocks import crane_and_blocks
 from Red_blocks import push_red_blocks_and_return
-from swingset import swingset_mission
-from drone import drone
+from Swingset import swingset_mission
+from Drone import drone
 
 # Runs the gyro drift check programs
 Anti_Drift_Thing()

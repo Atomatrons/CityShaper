@@ -30,7 +30,7 @@ def crane_and_blocks():
 
     # Completes the crane mission
 
-    My_block.gyro_straight(10, 1.93)
+    My_block.gyro_straight(20, 1.95)
 
     Robot.sleep(0.3)
 

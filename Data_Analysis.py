@@ -1,15 +1,16 @@
 #!/usr/bin/env micropython
 
+import statistics
+
 # List of spin turn error values
 data = []
 
 # open log file
-logfile = open ('log.txt','r')
+logfile = open ('log_data.txt','r')
  
  # read file into 
 for line in logfile:
     data.append(int(line))
-print(data)
 
 # compute some statistics
 total_error = 0
@@ -22,15 +23,14 @@ for item in data:
     if item < min_value:
         min_value = item
 
-print('total is {}'.format (total_error))
 # number of data values
 data_values = len(data)
 
-# prints out statsistics
-print ('number of samples is {}'.format(data_values))
-print ('minimum value is {}'.format (min_value))
-print ('maximum value is {}'.format (max_value))
-
 # Computes Average
 average = total_error/data_values
-print (' average is {} degrees'.format (round(average, 2)))
+
+#Prints out Data Values
+print("samples: {}, Min: {}, Max: {}, Avg:{}, Median: {}".format(data_values, min_value, max_value, average, statistics.median(data)))
+
+
+
