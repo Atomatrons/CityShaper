@@ -185,3 +185,14 @@ def ramp_speed(start_speed, end_speed, rotations):
             Robot.tank_pair.on(start_speed, start_speed)
             start_speed = start_speed+0.2
         Robot.tank_pair.on(end_speed, end_speed)
+
+def line_follower(speed, rotations):
+    
+    while Robot.right_color.is_at_white == False:
+        Robot.steer_pair.on(20, 15)
+    
+    Robot.left_wheel.reset
+
+    while Robot.left_wheel.rotations < rotations:
+        steering_factor = Robot.right_color.reflected_light_intensity-19
+        Robot.steer_pair.on(steering_factor, speed)
