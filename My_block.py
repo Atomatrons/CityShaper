@@ -22,13 +22,13 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
     while left_is_on or right_is_on == True:
 
-            if Robot.right_color.is_at_white():
-                Robot.right_wheel.off(brake=True)
-                right_is_on = False
+        if Robot.right_color.is_at_white():
+            Robot.right_wheel.off(brake=True)
+            right_is_on = False
 
-            if Robot.left_color.is_at_white():
-                Robot.left_wheel.off(brake=True)
-                left_is_on = False
+        if Robot.left_color.is_at_white():
+            Robot.left_wheel.off(brake=True)
+            left_is_on = False
 
     Robot.tank_pair.on(5, 5)
 
@@ -100,8 +100,8 @@ def spin_turn(target_angle):
     # Log difference between actual and intended compass point, for data analysis
     Robot.log(abs(target_angle-Robot.gyro.compass_point))
 
-# Defines simple_turn function
 
+# Defines simple_turn function
 def simple_turn(target_angle):
     """
     Turns the robot untill the gyro reads the target angle compass point
@@ -129,9 +129,8 @@ def simple_turn(target_angle):
     # Log difference between actual and intended compass point, for data analysis
     Robot.log(abs(target_angle-Robot.gyro.compass_point))
 
+
 # Defines the gyro_straight program
-
-
 def gyro_straight(speed, rotations):
     """
     Makes the robot go straight using the gyro.
@@ -164,7 +163,6 @@ def gyro_straight(speed, rotations):
 
 
 # Defines the ramp_gyro_straight program
-
 def ramp_gyro_straight(start_speed, end_speed, rotations):
     """
     Makes the robot go straight using the gyro, changing speed from start_speed to end_speed.
@@ -187,7 +185,8 @@ def ramp_gyro_straight(start_speed, end_speed, rotations):
                     start_heading-Robot.gyro.angle, -abs(start_speed))
                 start_speed = start_speed+0.7
 
-            Robot.steer_pair.on(Robot.gyro.angle-start_heading, -abs(end_speed))
+            Robot.steer_pair.on(
+                (Robot.gyro.angle-start_heading)*2, -abs(end_speed))
     else:
         # forwards
         if rotations < 0:
@@ -198,15 +197,14 @@ def ramp_gyro_straight(start_speed, end_speed, rotations):
 
         while Robot.left_wheel.rotations < target_rotations:
             while start_speed < end_speed:
-                Robot.steer_pair.on(start_heading-Robot.gyro.angle, start_speed)
+                Robot.steer_pair.on(
+                    start_heading-Robot.gyro.angle, start_speed)
                 start_speed = start_speed+0.7
-
-            Robot.steer_pair.on(start_heading-Robot.gyro.angle, end_speed)
+            Robot.steer_pair.on((start_heading-Robot.gyro.angle)*2, end_speed)
     Robot.steer_pair.off(brake=True)
 
+
 # Defines the ramp speed function
-
-
 def ramp_speed(start_speed, end_speed, rotations):
     start_rotations = Robot.left_wheel.rotations
 
@@ -216,11 +214,12 @@ def ramp_speed(start_speed, end_speed, rotations):
             start_speed = start_speed+0.2
         Robot.tank_pair.on(end_speed, end_speed)
 
+# Defines the line follower function
 def line_follower(speed, rotations):
-    
+
     while Robot.right_color.is_at_white == False:
         Robot.steer_pair.on(20, 15)
-    
+
     Robot.left_wheel.reset
 
     while Robot.left_wheel.rotations < rotations:

@@ -59,9 +59,9 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2 RUN 2")
                 Robot.sleep(0.2)
-                
+
                 swingset_mission()
-                
+
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
@@ -76,9 +76,9 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3")
                 Robot.sleep(0.2)
-                
+
                 push_red_blocks_and_return()
-                
+
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
@@ -93,9 +93,9 @@ while True:
             if Robot.button.enter == True:
                 print("RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4 RUN 4")
                 Robot.sleep(0.2)
-                
+
                 drone()
-                
+
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
