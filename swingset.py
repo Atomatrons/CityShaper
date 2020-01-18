@@ -18,7 +18,7 @@ def swingset_mission():
 
     # Complete Swing and back away
 
-    My_block.gyro_straight(75, 7.26)
+    My_block.ramp_gyro_straight(10, 80, 7.26)
 
     My_block.gyro_straight(30, -1)
 
