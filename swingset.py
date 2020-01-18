@@ -18,7 +18,7 @@ def swingset_mission():
 
     # Complete Swing and back away
 
-    My_block.gyro_straight(50, 7.3)
+    My_block.gyro_straight(75, 7.26)
 
     My_block.gyro_straight(30, -1)
 
@@ -29,15 +29,15 @@ def swingset_mission():
 
     # Drive to elevator
     
-    My_block.gyro_straight(30, 1.62)
+    My_block.gyro_straight(35, 1.62)
     My_block.spin_turn(52)
-    My_block.gyro_straight(30, 2.1)
+    My_block.gyro_straight(35, 2.1)
 
     # qwhack elevator
     
     Robot.left_attachment.on_for_rotations(35, 1)
-    sleep(1)
-    Robot.tank_pair.on_for_rotations(50, 50, -2.5)
+    sleep(0.5)
+    Robot.tank_pair.on_for_rotations(55, 55, -2.5)
 
     # Return home
 
