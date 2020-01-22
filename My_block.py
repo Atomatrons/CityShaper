@@ -20,25 +20,22 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
 
     # Checks the color sensor values to find black. When a color sensor finds black, it stops the corresponding motor.
 
-    while left_is_on and right_is_on:
+    while left_is_on or right_is_on == True:
 
-        if Robot.right_color.is_at_white():
-            Robot.right_wheel.off(brake=True)
-            right_is_on = False
+            if Robot.right_color.is_at_white():
+                Robot.right_wheel.off(brake=True)
+                right_is_on = False
 
-        if Robot.left_color.is_at_white():
-            Robot.left_wheel.off(brake=True)
-            left_is_on = False
+            if Robot.left_color.is_at_white():
+                Robot.left_wheel.off(brake=True)
+                left_is_on = False
 
-    Robot.sleep(0.1)
+    Robot.tank_pair.on(5, 5)
 
-    Robot.left_wheel.on(left_wheel_speed/4)
-    Robot.right_wheel.on(right_wheel_speed/4)
-
-    right_is_on = True
     left_is_on = True
+    right_is_on = True
 
-    while left_is_on and right_is_on:
+    while left_is_on or right_is_on == True:
 
         if Robot.right_color.is_at_black():
             Robot.right_wheel.off(brake=True)
@@ -54,8 +51,10 @@ def wall_square(speed=10):
     """
     Program that squares against a wall
     """
+    # force robot to go backwards
     if speed > 0:
-        speed = speed*(-1)
+        speed = speed * (-1)
+    # go to wall
     Robot.steer_pair.on(0, speed)
     while True:
         if Robot.touch.is_pressed == True:
@@ -71,9 +70,9 @@ def spin_turn(target_angle):
     """
     # Turns on the motors
     if target_angle > Robot.gyro.compass_point:
-        Robot.tank_pair.on(25, -25)
+        Robot.tank_pair.on(20, -20)
     else:
-        Robot.tank_pair.on(-25, 25)
+        Robot.tank_pair.on(-20, 20)
 
     # Checks if the gyro compass point angle equals target_angle
     if target_angle > Robot.gyro.compass_point:
@@ -90,6 +89,7 @@ def spin_turn(target_angle):
         while target_angle < Robot.gyro.compass_point:
             pass
         Robot.tank_pair.off(brake=True)
+        Robot.sleep(0.2)
 
         # Precisely turns back to the desired angle if the robot overshot
         if target_angle > Robot.gyro.compass_point:
@@ -111,6 +111,7 @@ def gyro_straight(speed, rotations):
 
     # checks if the robot should go backward or not
     if rotations*speed < 0:
+        # backwards
         if rotations > 0:
             target_rotations = Robot.left_wheel.rotations - rotations
         else:
@@ -120,6 +121,7 @@ def gyro_straight(speed, rotations):
         while Robot.left_wheel.rotations > target_rotations:
             Robot.steer_pair.on(Robot.gyro.angle - start_heading, -abs(speed))
     else:
+        # forwards
         if rotations < 0:
             target_rotations = Robot.left_wheel.rotations - rotations
             speed = speed * -1
@@ -129,6 +131,49 @@ def gyro_straight(speed, rotations):
         while Robot.left_wheel.rotations < target_rotations:
             Robot.steer_pair.on(start_heading-Robot.gyro.angle, speed)
     Robot.steer_pair.off(brake=True)
+
+
+# Defines the ramp_gyro_straight program
+
+def ramp_gyro_straight(start_speed, end_speed, rotations):
+    """
+    Makes the robot go straight using the gyro, changing speed from start_speed to end_speed.
+    """
+    # Sets the degree value the robot will try to stick to
+    start_heading = Robot.gyro.angle
+
+    # checks if the robot should go backward or not
+    if rotations*start_speed < 0:
+        # backwards
+        if rotations > 0:
+            target_rotations = Robot.left_wheel.rotations - rotations
+        else:
+            target_rotations = Robot.left_wheel.rotations + rotations
+            speed = start_speed * -1
+
+        while Robot.left_wheel.rotations > target_rotations:
+            while start_speed < end_speed:
+                Robot.steer_pair.on(
+                    start_heading-Robot.gyro.angle, -abs(start_speed))
+                start_speed = start_speed+0.7
+
+            Robot.steer_pair.on(Robot.gyro.angle-start_heading, -abs(end_speed))
+    else:
+        # forwards
+        if rotations < 0:
+            target_rotations = Robot.left_wheel.rotations - rotations
+            speed = start_speed * -1
+        else:
+            target_rotations = Robot.left_wheel.rotations + rotations
+
+        while Robot.left_wheel.rotations < target_rotations:
+            while start_speed < end_speed:
+                Robot.steer_pair.on(start_heading-Robot.gyro.angle, start_speed)
+                start_speed = start_speed+0.7
+            Robot.steer_pair.on(start_heading-Robot.gyro.angle, end_speed)
+    Robot.steer_pair.off(brake=True)
+
+# Defines the ramp speed function
 
 
 def ramp_speed(start_speed, end_speed, rotations):
