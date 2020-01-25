@@ -11,16 +11,30 @@ def proportional_turn(target_angle):
 
     # clockwise
     while current_angle < target_angle:
-        speed = abs(target_angle - current_angle)
+        speed = target_angle - current_angle
+        if speed > 100:
+            speed = 100
         if speed < 5:
             speed = 5
+        Robot.debug_print("CW current_angle: {}, target_angle: {}, speed: {}".format(current_angle, target_angle, speed))
         Robot.tank_pair.on(speed, -speed)
+        current_angle = Robot.gyro.compass_point
         if current_angle >= target_angle:
             return
         
     # counterclockwise
     while current_angle > target_angle:
         speed = abs(target_angle - current_angle)
+        if speed > 100:
+            speed = 100
         if speed < 5:
             speed = 5
+        Robot.debug_print("CCW current_angle: {}, target_angle: {}, speed: {}".format(current_angle, target_angle, speed))
         Robot.tank_pair.on(-speed, speed)
+        current_angle = Robot.gyro.compass_point
+
+Robot.gyro.compass_point = 0
+proportional_turn(180)
+Robot.debug_print("Final Heading: {}".format(Robot.gyro.compass_point))
+proportional_turn(-180)
+Robot.debug_print("Final Heading: {}".format(Robot.gyro.compass_point))
