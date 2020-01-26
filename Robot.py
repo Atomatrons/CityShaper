@@ -45,12 +45,6 @@ GYROSENSOR_PORT = INPUT_2
 
 # Checks every port on the robot to see if its connected properly
 
-print("ROBOT STARTING UP")
-for int in range (0,4):
-    print(".")
-    sleep(0.4)
-console.reset_console
-
 healthy = False
 while healthy == False:
     healthy = True
@@ -100,10 +94,6 @@ while healthy == False:
     sleep(0.5)
     console.reset_console()
 
-# Plays a tone to show the robot passed the test
-print("PASSED WITH NO ERRORS. GOOD LUCK")
-sleep(1.2)
-console.reset_console()
 
 # Attachment motor direction
 CLK_WISE = 'clock_wise'  # positive speed
