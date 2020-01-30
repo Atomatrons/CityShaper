@@ -1,7 +1,7 @@
 # My_block.py - Utility programs for use in runs
 from time import sleep
 import Robot
-
+import time
 
 # Defines the line square program
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
@@ -68,6 +68,9 @@ def spin_turn(target_angle):
     """
     Turns the robot untill the gyro reads the target angle compass point
     """
+    starttime = time.time()
+    startangle = Robot.gyro.compass_point
+
     # Turns on the motors
     if target_angle > Robot.gyro.compass_point:
         Robot.tank_pair.on(20, -20)
@@ -97,7 +100,8 @@ def spin_turn(target_angle):
                 Robot.tank_pair.on(2, -2)
 
     # Log difference between actual and intended compass point, for data analysis
-    Robot.log(abs(target_angle-Robot.gyro.compass_point))
+    endtime = time.time()
+    Robot.log("{},{},{}".format(abs(target_angle-Robot.gyro.compass_point), (endtime-starttime), abs(startangle-target_angle)))
 
 # Defines the gyro_straight program
 
@@ -184,3 +188,4 @@ def ramp_speed(start_speed, end_speed, rotations):
             Robot.tank_pair.on(start_speed, start_speed)
             start_speed = start_speed+0.2
         Robot.tank_pair.on(end_speed, end_speed)
+

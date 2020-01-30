@@ -1,4 +1,5 @@
 #!/usr/bin/env micropython
+import time
 
 # List of spin turn error values
 data = []
@@ -34,9 +35,4 @@ print ('maximum value is {}'.format (max_value))
 # Computes Average
 average = total_error/data_values
 print (' average is {} degrees'.format (round(average, 2)))
-
-
-
-
-
 
