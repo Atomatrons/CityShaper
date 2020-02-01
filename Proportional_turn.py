@@ -12,8 +12,8 @@ def proportional_turn(target_angle):
     # clockwise
     while current_angle < target_angle:
         speed = target_angle - current_angle
-        if speed > 100:
-            speed = 100
+        if speed > 40:
+            speed = 40
         if speed < 5:
             speed = 5
         Robot.debug_print("CW current_angle: {}, target_angle: {}, speed: {}".format(current_angle, target_angle, speed))
@@ -25,8 +25,8 @@ def proportional_turn(target_angle):
     # counterclockwise
     while current_angle > target_angle:
         speed = abs(target_angle - current_angle)
-        if speed > 100:
-            speed = 100
+        if speed > 40:
+            speed = 40
         if speed < 5:
             speed = 5
         Robot.debug_print("CCW current_angle: {}, target_angle: {}, speed: {}".format(current_angle, target_angle, speed))
