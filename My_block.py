@@ -101,7 +101,11 @@ def spin_turn(target_angle):
 
     # Log difference between actual and intended compass point, for data analysis
     endtime = time.time()
-    Robot.log("{},{},{}".format(abs(target_angle-Robot.gyro.compass_point), (endtime-starttime), abs(startangle-target_angle)))
+    elapsted = endtime - starttime
+    Robot.log("{},{},{}".format(
+        elapsted,
+        abs(target_angle-Robot.gyro.compass_point),
+        abs(startangle-target_angle)))
 
 # Defines the gyro_straight program
 
