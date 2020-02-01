@@ -6,4 +6,4 @@ import Robot
 
 Robot.gyro.compass_point = 0
 
-swingset_mission()
+My_block.gyro_straight(30, 4)
