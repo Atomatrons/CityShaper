@@ -18,7 +18,7 @@ def swingset_mission():
 
     # Complete Swing and back away
 
-    My_block.ramp_gyro_straight(10, 80, 7.26)
+    My_block.gyro_straight(40, 7.26)
 
     My_block.gyro_straight(30, -1)
 
@@ -30,8 +30,8 @@ def swingset_mission():
     # Drive to elevator
     
     My_block.gyro_straight(35, 1.62)
-    My_block.spin_turn(52)
-    My_block.gyro_straight(35, 2.1)
+    My_block.spin_turn(56)
+    My_block.gyro_straight(35, 2.06)
 
     # qwhack elevator
     
