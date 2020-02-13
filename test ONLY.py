@@ -4,6 +4,4 @@ from Swingset import swingset_mission
 import My_block
 import Robot
 
-Robot.gyro.compass_point = 0
-
-My_block.gyro_straight(30, 4)
+Robot.right_attachment.on_for_seconds(-100, 1)
