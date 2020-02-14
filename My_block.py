@@ -1,7 +1,7 @@
 # My_block.py - Utility programs for use in runs
 from time import sleep
 import Robot
-
+import Shiva_Steering
 
 # Defines the line square program
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
@@ -157,7 +157,7 @@ def gyro_straight(speed, rotations):
         else:
             target_rotations = Robot.left_wheel.rotations + rotations
 
-        while Robot.left_wheel.rotations < target_rotations:
+        while Robot.left_wheel.rotations < target_rotations*Shiva_Steering.factor:
             Robot.steer_pair.on(start_heading-Robot.gyro.angle, speed)
     Robot.steer_pair.off(brake=True)
 
@@ -195,7 +195,7 @@ def ramp_gyro_straight(start_speed, end_speed, rotations):
         else:
             target_rotations = Robot.left_wheel.rotations + rotations
 
-        while Robot.left_wheel.rotations < target_rotations:
+        while Robot.left_wheel.rotations < target_rotations*Shiva_Steering.factor:
             while start_speed < end_speed:
                 Robot.steer_pair.on(
                     start_heading-Robot.gyro.angle, start_speed)
@@ -207,8 +207,8 @@ def ramp_gyro_straight(start_speed, end_speed, rotations):
 # Defines the ramp speed function
 def ramp_speed(start_speed, end_speed, rotations):
     start_rotations = Robot.left_wheel.rotations
-
-    while Robot.left_wheel.rotations <= start_rotations + rotations:
+    end_rotations = start_rotations + rotations
+    while Robot.left_wheel.rotations <=  end_rotations*Shiva_Steering.factor:
         while start_speed < end_speed:
             Robot.tank_pair.on(start_speed, start_speed)
             start_speed = start_speed+0.2
@@ -223,5 +223,5 @@ def line_follower(speed, rotations):
     Robot.left_wheel.reset
 
     while Robot.left_wheel.rotations < rotations:
-        steering_factor = Robot.right_color.reflected_light_intensity-19
+        steering_factor = Robot.right_color.reflected_light_intensity-30
         Robot.steer_pair.on(steering_factor, speed)

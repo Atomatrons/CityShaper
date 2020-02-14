@@ -12,6 +12,8 @@ import sys
 from ev3dev2 import DeviceNotFound
 
 # import motor modules and the ev3 ports used for it
+from Shiva_Steering import Shiva_MoveSteering
+from Shiva_Steering import Shiva_MoveTank
 from ev3dev2.motor import LargeMotor, MediumMotor, Motor, OUTPUT_B, OUTPUT_C, OUTPUT_A, OUTPUT_D
 from ev3dev2.motor import MoveSteering, MoveTank
 from ev3dev2.motor import SpeedNativeUnits
@@ -102,13 +104,14 @@ ANTI_CLK_WISE = 'anti_clck_wise'  # negative speed
 
 # Create objects for the ev3 motors and sensors. Only one object will be created for each physical object and used in every program
 
+
 # LARGEMOTORS USED FOR WHEELS
 
 # Create object functions for basic movements for wheel pair blocks
-steer_pair = MoveSteering(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
+steer_pair = Shiva_MoveSteering(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
 steer_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 
-tank_pair = MoveTank(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
+tank_pair = Shiva_MoveTank(LARGE_MOTOR_LEFT_PORT, LARGE_MOTOR_RIGHT_PORT)
 tank_pair.set_polarity(LargeMotor.POLARITY_INVERSED)
 
 # Create GYROSENSOR
