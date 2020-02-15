@@ -20,8 +20,18 @@ def push_red_blocks_and_return():
 
     Robot.tank_pair.on_for_rotations(50, 50, 3.9)
 
-    Robot.tank_pair.on_for_rotations(75, 75, -1.5)
+    Robot.tank_pair.on_for_rotations(75, 75, -1)
+
+    My_block.spin_turn(0)
+
+    Robot.tank_pair.on_for_rotations(50, 50, .7)
+
+    My_block.spin_turn(63)
+
+    Robot.tank_pair.on_for_rotations(20, 20, 1)
 
     # Returns home
+    Robot.tank_pair.on_for_rotations(25, 25, -1)
+    My_block.spin_turn(90)
 
-    My_block.wall_square(100)
+    My_block.wall_square(90)
