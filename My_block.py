@@ -2,6 +2,7 @@
 from time import sleep
 import Robot
 import Shiva_Steering
+from sys import stderr
 
 # Defines the line square program
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
