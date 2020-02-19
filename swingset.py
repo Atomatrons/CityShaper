@@ -16,18 +16,10 @@ def swingset_mission():
     
     Robot.gyro.compass_point = 90
 
-<<<<<<< HEAD
     # go to swingset and release girl
     My_block.ramp_gyro_straight (10, 75, 7.26)
     # back off swingset 
     My_block.gyro_straight (50, -1)
-=======
-    # Complete Swing and back away
-
-    My_block.ramp_gyro_straight(10, 80, 7.26)
-
-    My_block.gyro_straight(30, -1)
->>>>>>> 28d792f5de7ba0c508e4e91bc82f03fda28e8c87
 
     # Smush against wall
     

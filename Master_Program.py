@@ -6,10 +6,10 @@ import Robot
 import My_block
 from Anti_Drift_Thing import Anti_Drift_Thing
 
-from Crane_and_blocks import crane_and_blocks
+from crane_and_blocks import crane_and_blocks
 from Red_blocks import push_red_blocks_and_return
-from Swingset import swingset_mission
-from Drone import drone
+from swingset import swingset_mission
+from drone import drone
 
 # Runs the gyro drift check programs
 Anti_Drift_Thing()
@@ -67,7 +67,7 @@ while True:
                 Robot.sound.tone([(900, 500, 100)], play_type=1)
 
     # Checks if the user is pressing the left and center buttons
-
+ 
     if Robot.button.left == True:
         print("RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3 RUN 3")
         Robot.sound.tone([(500, 350, 50), (500, 350, 50),
