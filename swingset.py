@@ -19,7 +19,7 @@ def swingset_mission():
 
     # Complete Swing and back away
 
-    My_block.gyro_straight(40, 7.26)
+    My_block.gyro_straight(40, 7.36)
 
     My_block.gyro_straight(30, -1)
 
@@ -32,29 +32,50 @@ def swingset_mission():
     
     My_block.gyro_straight(35, 1.62)
     My_block.spin_turn(56)
-    My_block.gyro_straight(35, 1.96)
+    My_block.gyro_straight(35, 2.15)
 
     # qwhack elevator
     
     Robot.left_attachment.on_for_rotations(35, 1)
     sleep(0.5)
-    Robot.tank_pair.on_for_rotations(55, 55, -1.05)
+    Robot.tank_pair.on_for_rotations(55, 55, -0.93)
     Robot.left_attachment.on_for_rotations(-35, 0.95)
 
 
     # Do House Mission
+    Robot.debug_print(Robot.gyro.compass_point)
 
-    My_block.spin_turn(100)
-    Robot.right_attachment.on_for_seconds(-70, 5.3)
-    My_block.gyro_straight(30, 1.24)
+    My_block.spin_turn(95)
+
     Robot.debug_print(Robot.gyro.compass_point)
-    My_block.spin_turn(102)
+
+    Robot.right_attachment.on_for_seconds(-50, 1.4)
+    
     Robot.debug_print(Robot.gyro.compass_point)
-    My_block.spin_turn(96)
+
+    My_block.gyro_straight(30, 0.9)
+
     Robot.debug_print(Robot.gyro.compass_point)
+
+    My_block.spin_turn(93)
+
+    Robot.debug_print(Robot.gyro.compass_point)
+    
+    Robot.steer_pair.on_for_rotations(0, -20, 0.3)
+
+    My_block.spin_turn(110)
+
+    Robot.debug_print(Robot.gyro.compass_point)
+
+    Robot.steer_pair.on_for_rotations(0, -20, 0.3) 
+
+    My_block.spin_turn(90)
+
     
     # Go Home.
 
 
     My_block.wall_square(100)
-    Robot.right_attachment.on_for_seconds(100, 4)
+    Robot.right_attachment.on_for_seconds(100, 4.2)
+
+    My_block.spin_turn(0)
