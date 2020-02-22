@@ -15,9 +15,20 @@ def drone():
 
     Robot.gyro.compass_point = 0
 
+    # Moves the robot forward, turns, and pushes architecture to circle
+    My_block.gyro_straight(35,1)
+    My_block.spin_turn(44)
+    My_block.gyro_straight(35, 1.7)
+
+    # backs up
+    My_block.gyro_straight(35,-1.7)
+
+    #turns to drone
+    My_block.spin_turn(0)
+
     # Moves the robot forward and turns it to allign with the line
 
-    My_block.gyro_straight(35, 2.48)
+    My_block.gyro_straight(35, 1.38)
 
     My_block.spin_turn(44)
 
