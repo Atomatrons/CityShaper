@@ -69,14 +69,14 @@ def swingset_mission():
 
     Robot.steer_pair.on_for_rotations(0, -20, 0.3) 
 
-    My_block.spin_turn(86)
+    My_block.proportional_turn(86)
 
     
     # Go Home.
 
 
-    My_block.gyro_straight(100, 6)
+    My_block.gyro_straight(100, -6)
     My_block.wall_square(100)
     Robot.right_attachment.on_for_rotations(100, 2.2)
     sleep(0.4)
-    My_block.spin_turn(0)
+    My_block.proportional_turn(0)

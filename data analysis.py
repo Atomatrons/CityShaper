@@ -1,68 +1,78 @@
 #!/usr/bin/env micropython
 import time
-
-# List of spin turn error values
-data = []
-
-# open log file
-# logfile = open('log.txt','r')
+import statistics
 
 # Capture some statistics
 longest_time = 0
 shortest_time = 99999999999
-total_error = 0
 total_secs = 0
+max_speed = -1
+min_speed = 10000
+
+total_error = 0
+max_error = -1
+min_error = 10000
+
 total_deg = 0
-max_value = -1
-min_value = 1000
 number_of_lines = 0
 
+error_list = []                 # list of degrees each turn is off from target
+mseconds_per_degree_list = []   # list of milliseconds per degree for turn
+
 # Parse log file
-with open('log_data.txt', 'r') as log:
+with open('log_data_BB.txt', 'r') as log:
     for line in log:
         # reads one line in the file and splits it into three values.
-        elapsed, error, target_angle = line.split(',')
+        elapsed, degrees_turned, error = line.split(',')
         # convert strings to numbers
         elapsed = float(elapsed)
+        degrees_turned = int(degrees_turned)
+        if degrees_turned == 0:
+            degrees_turned = 1
         error = int(error)
-        target_angle = int(target_angle)
-        # set min and max.
+        speed = (elapsed / degrees_turned) * 1000
+
+        # set min and max times
         if elapsed > longest_time:
             longest_time = elapsed
-        if elapsed <= shortest_time:
+        if elapsed < shortest_time:
             shortest_time = elapsed
+
+        # set min and max speed
+        if speed > max_speed:
+            max_speed = speed
+        if speed < min_speed:
+            min_speed = speed
+
+        # set min and max errors
+        if error > max_error:
+            max_error = error
+        if error < min_error:
+            min_error = error
+
+        # update totals
         total_error = error + total_error
         number_of_lines = number_of_lines + 1
-        total_deg = total_deg + target_angle
+        total_deg = total_deg + degrees_turned
         total_secs = elapsed + total_secs
 
-average_error = total_error / number_of_lines
+        # append to lists
+        error_list.append(error)
+        mseconds_per_degree_list.append(speed)
+
+# compute timing stats
 msecs_per_deg = (total_secs / total_deg) * 1000
-print("longest_time: {:.2f}s".format(longest_time))
-print("shortest_time: {:.2f}s".format(shortest_time))
-print("average_error: {:.2f}deg".format(average_error))
 print("total_secs: {:.2f}s".format(total_secs))
-print("total_deg: {:.2f}deg".format(total_deg))
+print("total_deg: {}deg".format(total_deg))
 print("msecs_per_deg: {:.2f}msecs".format(msecs_per_deg))
 
-# for item in data:
-#     total_error += item
-#     if item > max_value:
-#         max_value = item
-#     if item < min_value:
-#         min_value = item
+# compute error stats
+average_error = total_error / number_of_lines
+print('total error is {}'.format(total_error))
 
-print('total is {}'.format(total_error))
-# number of data values
-data_values = len(data)
-
-# prints out statsistics
-print('number of samples is {}'.format(data_values))
-print('minimum value is {}'.format(min_value))
-print('maximum value is {}'.format(max_value))
-
-# Computes Average
-# average = total_error/data_values
-# print('Average is {} degrees'.format(round(average, 2)))
-
+# Print out statistics
+print("samples: {}".format(number_of_lines))
+print("Min Error: {}, Max Error: {}, Avg Error: {}, Median Error: {}".format(min_error, max_error, average_error, statistics.median(error_list)))
+print("Min duration: {:.2f}, Max duration: {:.2f}, Avg duration: {:.2f}".format(shortest_time, longest_time, total_secs / number_of_lines))
+print("Min speed: {:.2f}, Max speed: {:.2f}, Avg speed: {:.2f}, Median speed: {:.2f}".format(min_speed, max_speed, msecs_per_deg, statistics.median(mseconds_per_degree_list)))
 

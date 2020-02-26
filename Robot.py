@@ -53,45 +53,45 @@ while healthy == False:
     try:
         left_wheel = Motor(LARGE_MOTOR_LEFT_PORT)
     except:
-        print("BAD LEFT WHEEL")
+        print("BAD LEFT WHEEL: Port B")
         healthy = False
     try:
         right_wheel = Motor(LARGE_MOTOR_RIGHT_PORT)
     except:
-        print("BAD RIGHT WHEEL")
+        print("BAD RIGHT WHEEL: Port C")
         healthy = False
 
     try:
         left_attachment = Motor(MEDIUM_MOTOR_LEFT)
     except:
-        print("BAD LEFT ATTACHMENT")
+        print("BAD LEFT ATTACHMENT: Port A")
         healthy = False
     try:
         right_attachment = Motor(MEDIUM_MOTOR_RIGHT)
     except:
-        print("BAD RIGHT ATTACHMENT")
+        print("BAD RIGHT ATTACHMENT: Port D")
         healthy = False
 
     try:
         left_color = ShivaColor(COLORSENSOR_LEFT)
     except:
-        print("BAD LEFT COLOR")
+        print("BAD LEFT COLOR: Port 3")
         healthy = False
     try:
         right_color = ShivaColor(COLORSENSOR_RIGHT)
     except:
-        print("BAD RIGHT COLOR")
+        print("BAD RIGHT COLOR: Port 1")
         healthy = False
 
     try:
         touch = TouchSensor(TOUCHSENSOR_PORT)
     except:
-        print("BAD TOUCH")
+        print("BAD TOUCH: Port 4")
         healthy = False
     try:
         gyro = ShivaGyro(GYROSENSOR_PORT)
     except:
-        print("BAD GYRO")
+        print("BAD GYRO: Port 2")
         healthy = False
     sleep(0.5)
     console.reset_console()

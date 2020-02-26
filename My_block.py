@@ -1,9 +1,9 @@
-# My_block.py - Utility programs for use in runs
-from time import sleep
+# My_block.py - Utility functions for use in runs
+import time
 import Robot
 import Shiva_Steering
 
-# Defines the line square program
+# Defines the line square function
 def line_square(left_wheel_speed=10, right_wheel_speed=10):
     """
     Program that squares to a line. 
@@ -45,8 +45,7 @@ def line_square(left_wheel_speed=10, right_wheel_speed=10):
             Robot.left_wheel.off(brake=True)
             left_is_on = False
 
-
-# Defines the wall square program
+# Defines the wall square function
 def wall_square(speed=10):
     """
     Program that squares against a wall
@@ -62,12 +61,14 @@ def wall_square(speed=10):
             Robot.steer_pair.off(brake=True)
             break
 
-
-# Defines the spin_turn program
+# Do spin turn, using bounceback for accuracy
 def spin_turn(target_angle):
     """
     Turns the robot untill the gyro reads the target angle compass point
     """
+    start_time = time.time()
+    start_angle = Robot.gyro.compass_point
+
     # Turns on the motors
     if target_angle > Robot.gyro.compass_point:
         Robot.tank_pair.on(20, -20)
@@ -97,15 +98,61 @@ def spin_turn(target_angle):
             while target_angle > Robot.gyro.compass_point:
                 Robot.tank_pair.on(2, -2)
 
-    # Log difference between actual and intended compass point, for data analysis
-    Robot.log(abs(target_angle-Robot.gyro.compass_point))
+    # Log elapsed time, number of degrees turned, and accuracy of turn
+    Robot.log("{},{},{}".format(
+        time.time() - start_time,                       # elapsed time
+        abs(start_angle - target_angle),                # degrees actually turned
+        abs(target_angle - Robot.gyro.compass_point)    # error
+        ))
 
+# Do spin turn, using proportional speed control for accuracy
+def proportional_turn(target_angle):
+    '''
+    proportional_turn goes from the compass point it's pointing at to the target angle with a slowly decreasing speed.  
+    '''
+    start_time = time.time()
+    start_angle = Robot.gyro.compass_point
 
-# Defines simple_turn function
+    current_angle = Robot.gyro.compass_point
+    amplification = 0.5
+
+    # clockwise
+    if current_angle < target_angle:
+        while current_angle < target_angle:
+            speed = (target_angle - current_angle) * amplification
+            if speed > 90:
+                speed = 90
+            if speed < 3:
+                speed = 3
+            Robot.tank_pair.on(speed, -speed)
+            current_angle = Robot.gyro.compass_point
+        
+    # counterclockwise
+    else:
+        while current_angle > target_angle:
+            speed = abs(target_angle - current_angle) * amplification
+            if speed > 90:
+                speed = 90
+            if speed < 3:
+                speed = 3
+            Robot.tank_pair.on(-speed, speed)
+            current_angle = Robot.gyro.compass_point
+
+    # Log elapsed time, number of degrees turned, and accuracy of turn
+    Robot.log("{},{},{}".format(
+        time.time() - start_time,                       # elapsed time
+        abs(start_angle - target_angle),                # degrees actually turned
+        abs(target_angle - Robot.gyro.compass_point)    # error
+        ))
+
+# Do spin turn, with no correction for accuracy
 def simple_turn(target_angle):
     """
     Turns the robot untill the gyro reads the target angle compass point
     """
+    start_time = time.time()
+    start_angle = Robot.gyro.compass_point
+
     # Turns on the motors
     if target_angle > Robot.gyro.compass_point:
         Robot.tank_pair.on(20, -20)
@@ -126,11 +173,14 @@ def simple_turn(target_angle):
         Robot.tank_pair.off(brake=True)
         Robot.sleep(0.2)
 
-    # Log difference between actual and intended compass point, for data analysis
-    Robot.log(abs(target_angle-Robot.gyro.compass_point))
+    # Log elapsed time, number of degrees turned, and accuracy of turn
+    Robot.log("{},{},{}".format(
+        time.time() - start_time,                       # elapsed time
+        abs(start_angle - target_angle),                # degrees actually turned
+        abs(target_angle - Robot.gyro.compass_point)    # error
+        ))
 
-
-# Defines the gyro_straight program
+# Defines the gyro_straight function
 def gyro_straight(speed, rotations):
     """
     Makes the robot go straight using the gyro.
@@ -161,8 +211,7 @@ def gyro_straight(speed, rotations):
             Robot.steer_pair.on(start_heading-Robot.gyro.angle, speed)
     Robot.steer_pair.off(brake=True)
 
-
-# Defines the ramp_gyro_straight program
+# Defines the ramp_gyro_straight function
 def ramp_gyro_straight(start_speed, end_speed, rotations):
     """
     Makes the robot go straight using the gyro, changing speed from start_speed to end_speed.
@@ -202,7 +251,6 @@ def ramp_gyro_straight(start_speed, end_speed, rotations):
                 start_speed = start_speed+0.7
             Robot.steer_pair.on((start_heading-Robot.gyro.angle)*2, end_speed)
     Robot.steer_pair.off(brake=True)
-
 
 # Defines the ramp speed function
 def ramp_speed(start_speed, end_speed, rotations):

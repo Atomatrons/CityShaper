@@ -10,6 +10,7 @@ from crane_and_blocks import crane_and_blocks
 from Red_blocks import push_red_blocks_and_return
 from swingset import swingset_mission
 from drone import drone
+from drone_plus import drone_plus
 
 # Runs the gyro drift check programs
 Anti_Drift_Thing()
@@ -95,6 +96,15 @@ while True:
                 Robot.sleep(0.2)
 
                 drone()
+
+                Robot.console.reset_console()
+                print("READY READY READY READY READY READY READY READY")
+                Robot.sound.tone([(900, 500, 100)], play_type=1)
+            elif Robot.button.left == True:
+                print("DRONE PLUS DRONE PLUS")
+                Robot.sleep(0.2)
+
+                drone_plus()
 
                 Robot.console.reset_console()
                 print("READY READY READY READY READY READY READY READY")

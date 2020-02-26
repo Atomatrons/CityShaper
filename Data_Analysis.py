@@ -29,7 +29,7 @@ data_values = len(data)
 # Computes Average
 average = total_error/data_values
 
-#Prints out Data Values
+# Prints out Data Values
 print("samples: {}, Min: {}, Max: {}, Avg:{}, Median: {}".format(data_values, min_value, max_value, average, statistics.median(data)))
 
 
