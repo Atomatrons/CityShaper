@@ -46,4 +46,4 @@ def crane_and_blocks():
 
     My_block.spin_turn(-40)
 
-    Robot.steer_pair.on_for_rotations(0, 100, 3.9)
+    Robot.steer_pair.on_for_rotations(0, 100, 4.25)

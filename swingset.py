@@ -11,7 +11,7 @@ def swingset_mission():
     Completes M-07 Swing, and M-08 Elevator.
     """
     
-    Robot.right_attachment.on_for_seconds(50, 1)
+    Robot.right_attachment.on_for_seconds(50, 0.5)
 
     # Establishes the compass point the robot is facing
     
